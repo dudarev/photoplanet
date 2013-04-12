@@ -1,3 +1,2 @@
  1 - version 0.0.1 - hello world
- 4 - push it github
  5 - make it run on heroku
