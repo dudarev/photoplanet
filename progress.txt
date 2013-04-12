@@ -1,5 +1,4 @@
  1 - version 0.0.1 - hello world
- 2 - add initial description and stories
  3 - just enough code to run hello world on localhost
  4 - push it github
  5 - make it run on heroku
