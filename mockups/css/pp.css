@@ -5572,3 +5572,8 @@ table tfoot tr td {
 .pagination-row {
   padding-top: 2em;
 }
+
+/* line 55, ../sass/pp.scss */
+.voting {
+  padding-top: 1em;
+}

@@ -9,5 +9,4 @@
  15 - About page
  16 - Login page
  17 - Feedback page
- 21 - vote icons under photos
  22 - navigation links
