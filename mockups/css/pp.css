@@ -5577,3 +5577,8 @@ table tfoot tr td {
 .voting, .time {
   padding-top: 1em;
 }
+
+/* line 59, ../sass/pp.scss */
+textarea {
+  height: auto;
+}
