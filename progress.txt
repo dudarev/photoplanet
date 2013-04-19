@@ -3,5 +3,4 @@
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
  14 - Photo page
- 16 - Login page
  17 - Feedback page
