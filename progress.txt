@@ -2,7 +2,6 @@
  8 - make mockups run as template views on dev server
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
- 13 - Day page
  14 - Photo page
  16 - Login page
  17 - Feedback page
