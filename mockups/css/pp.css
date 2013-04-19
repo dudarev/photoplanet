@@ -5562,3 +5562,13 @@ table tfoot tr td {
 .f-dropdown.large {
   max-width: 800px;
 }
+
+/* line 47, ../sass/pp.scss */
+.centered {
+  text-align: center;
+}
+
+/* line 51, ../sass/pp.scss */
+.pagination-row {
+  padding-top: 2em;
+}
