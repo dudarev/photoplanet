@@ -2,3 +2,15 @@
  8 - make mockups run as template views on dev server
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
+ 11 - All photos page
+ 12 - Main page
+ 13 - Day page
+ 14 - Photo page
+ 15 - About page
+ 16 - Login page
+ 17 - Feedback page
+ 18 - create foundation project in mockup directory
+ 19 - copy template for feed from foundation website
+ 20 - get photos for #donetsk from instagram
+ 21 - vote icons under photos
+ 22 - navigation links
