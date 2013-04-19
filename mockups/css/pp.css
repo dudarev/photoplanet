@@ -5574,6 +5574,6 @@ table tfoot tr td {
 }
 
 /* line 55, ../sass/pp.scss */
-.voting {
+.voting, .time {
   padding-top: 1em;
 }
