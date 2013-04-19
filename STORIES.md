@@ -35,7 +35,6 @@ Everything as main and one addition
 - Link to main page
 - Vote up/down
 - Points
-- Comments
 - Author with link
 - A text about photo (maximum of 500 characters)
 - Link to edit text

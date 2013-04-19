@@ -1,5 +1,3 @@
- 7 - create mockups for all initial views
  8 - make mockups run as template views on dev server
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
- 14 - Photo page
