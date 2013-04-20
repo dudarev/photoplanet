@@ -1,4 +1,4 @@
-
+{% load staticfiles %}
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -11,10 +11,10 @@
 
   <title>PhotoPlanet - All Photos</title>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/pp.css">
+  <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+  <link rel="stylesheet" href="{% static "css/pp.css" %}">
 
-  <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="{% static "js/vendor/custom.modernizr.js" %}"></script>
 
 </head>
 <body>
@@ -52,11 +52,11 @@
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="/img/profile_201076600_75sq_1364110539.jpg" alt="avatar" />
+            <img src="{% static "img/profile_201076600_75sq_1364110539.jpg" %}" alt="avatar" />
             <h6><a href="#">@vitaods</a></h6>
           </div>
           <div class="large-8 columns centered">
-            <img src="/img/005e5982a92911e2a9ff22000aaa0374_6.jpg" /><br />
+            <img src="{% static "img/005e5982a92911e2a9ff22000aaa0374_6.jpg" %}" /><br />
             <h6 class="show-for-small"><a href="#">@vitaods</a></h6>
             <div class="voting">
                           <a href="#">up</a> |
@@ -73,11 +73,11 @@
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="/img/profile_254369646_75sq_1364538697.jpg" alt="avatar" />
+            <img src="{% static "img/profile_254369646_75sq_1364538697.jpg" %}" alt="avatar" />
             <h6><a href="#">@ebabash</a></h6>
           </div>
           <div class="large-8 columns centered">
-            <img src="/img/025e32f2a91011e2ada322000a1fbcdb_6.jpg" />
+            <img src="{% static "img/025e32f2a91011e2ada322000a1fbcdb_6.jpg" %}" />
             <h6 class="show-for-small"><a href="#">@vitaods</a></h6>
             <div class="voting">
                           <a href="#">up</a> |
@@ -94,11 +94,11 @@
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="/img/profile_28344997_75sq_1362660285.jpg" alt="avatar" />
+            <img src="{% static "img/profile_28344997_75sq_1362660285.jpg" %}" alt="avatar" />
             <h6><a href="#">@rolenyatko</a></h6>
           </div>
           <div class="large-8 columns centered">
-            <img src="/img/19f50c56a91011e2b39c22000a1f8adc_6.jpg" />
+            <img src="{% static "img/19f50c56a91011e2b39c22000a1f8adc_6.jpg" %}" />
             <h6 class="show-for-small"><a href="#">@vitaods</a></h6>
             <div class="voting">
                           <a href="#">up</a> |
@@ -115,11 +115,11 @@
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="/img/profile_284788534_75sq_1362858679.jpg" alt="avatar" />
+            <img src="{% static "img/profile_284788534_75sq_1362858679.jpg" %}" alt="avatar" />
             <h6><a href="#">@vitaods</a></h6>
           </div>
           <div class="large-8 columns centered">
-            <img src="/img/3b0308fea92311e2af2c22000a1f9069_6.jpg" />
+            <img src="{% static "img/3b0308fea92311e2af2c22000a1f9069_6.jpg" %}" />
             <h6 class="show-for-small"><a href="#">@vitaods</a></h6>
             <div class="voting">
                           <a href="#">up</a> |
@@ -136,11 +136,11 @@
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="/img/profile_35307422_75sq_1355919594.jpg" alt="avatar" />
+            <img src="{% static "img/profile_35307422_75sq_1355919594.jpg" %}" alt="avatar" />
             <h6><a href="#">@vitaods</a></h6>
           </div>
           <div class="large-8 columns centered">
-            <img src="/img/444ae54cc2ee11e1aee522000a1e8a5f_6.jpg" />
+            <img src="{% static "img/444ae54cc2ee11e1aee522000a1e8a5f_6.jpg" %}" />
             <h6 class="show-for-small"><a href="#">@vitaods</a></h6>
             <div class="voting">
                           <a href="#">up</a> |
