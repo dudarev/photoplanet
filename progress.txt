@@ -1,4 +1,2 @@
- 8 - make mockups run as template views on dev server
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
- 25 - make feedback page be served from template
