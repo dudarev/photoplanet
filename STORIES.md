@@ -5,7 +5,8 @@
 - Photo 
 - About
 - All
- 
+- Login
+- Feedback
  
 # A user can see
 
@@ -20,12 +21,13 @@
 - Date as a title
 - Link to about page
 - Link to all page
+- Link to login
 
 ## Day
 
 Everything as main and one addition
 
-- links to following day with photos (if available)
+- Links to previous and next day with photos (if available)
 
 ## Photo 
 
@@ -33,7 +35,6 @@ Everything as main and one addition
 - Link to main page
 - Vote up/down
 - Points
-- Comments
 - Author with link
 - A text about photo (maximum of 500 characters)
 - Link to edit text
@@ -49,6 +50,14 @@ Everything as main and one addition
 - A button to load more at the bottom
 - Links to vote a photo up or down
 
+## Login
+
+- Navigation link
+- Social icons that may be used for login
+
+## Feedback
+
+- A form to send simple feedback that includes textarea for feedback, name and email
 
 # A user can do
 
@@ -60,3 +69,13 @@ Everything as main and one addition
  
 - Navigate links
 - Vote photos up and down
+
+## Login
+
+- Navigate links
+- Click a social network and login via it and be redirected to index page
+
+## Feedback
+
+- Navigate links
+- Send form and be redirected to index page

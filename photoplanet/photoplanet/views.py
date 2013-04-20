@@ -1,7 +1,6 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
-from django.http import HttpResponse
+from django.shortcuts import render_to_response
 
 
 def home(request):
-    html = "<html><body>Hello World!</body></html>"
-    return HttpResponse(html)
+    return render_to_response('photoplanet/index.html')

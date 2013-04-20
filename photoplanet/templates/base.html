@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>PhotoPlanet - All Photos</title>
+
+  {% block css %}
+  <link rel="stylesheet" href="{% static "css/normalize.css" %}">
+  <link rel="stylesheet" href="{% static "css/pp.css" %}">
+  {% endblock %}
+
+  <script src="{% static "js/vendor/custom.modernizr.js" %}"></script>
+
+</head>
+<body>
+
+  <!-- Nav Bar -->
+
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right hide-for-small">
+       <ul class="button-group">
+         <li><a href="day.html" class="button">Today</a></li>
+         <li><a href="{% url 'all' %}" class="button">All</a></li>
+         <li><a href="about.html" class="button">About</a></li>
+         <li><a href="login.html" class="button">Login</a></li>
+        </ul>
+      </div>
+      <h1>
+        <a href="/">PhotoPlanet</a>
+        <small>It's awesome.</small></h1>
+      <hr />
+    </div>
+  </div>
+
+  <!-- End Nav -->
+
+
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+
+    <!-- Main Blog Content -->
+    {% block content %}
+    {% endblock %}
+    <!-- End Main Content -->
+
+
+    <!-- Sidebar -->
+
+    <aside class="large-3 columns">
+
+      <div class="panel">
+        <h5>Sidebar</h5>
+        <p>Some information may go here.</p>
+        <a href="#">Read More &rarr;</a>
+      </div>
+
+    </aside>
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>&copy; Copyright no one at all. Go to town.</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="day.html">Today</a></li>
+            <li><a href="all.html">All</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="login.html">Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  document.write('<script src=js/vendor/' +
+  ('__proto__' in {} ? 'zepto' : 'jquery') +
+  '.js><\/script>')
+  </script>
+  <script src="js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+  <!-- End Footer -->
+</body>
+</html>
