@@ -1,3 +1,6 @@
  8 - make mockups run as template views on dev server
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
+ 23 - serve index page from template
+ 24 - make all photos page serve from template as CBV
+ 25 - make feedback page be served from template
