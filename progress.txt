@@ -1,3 +1,2 @@
  9 - make mockups run on heroku
  10 - a few examples of templatetags and filters
- 26 - create base.html based on index.html
