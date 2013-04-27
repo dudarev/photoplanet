@@ -30,7 +30,7 @@
          <li><a href="day.html" class="button">Today</a></li>
          <li><a href="{% url 'all' %}" class="button">All</a></li>
          <li><a href="about.html" class="button">About</a></li>
-         <li><a href="login.html" class="button">Login</a></li>
+         <li><a href="{% url 'login' %}" class="button">Login</a></li>
         </ul>
       </div>
       <h1>
@@ -59,8 +59,13 @@
 
       <div class="panel">
         <h5>Sidebar</h5>
-        <p>Some information may go here.</p>
-        <a href="#">Read More &rarr;</a>
+        <p>
+        {% if user.username %}
+        Logged in as {{ user.username }}.
+        {% else %}
+        Not logged in.
+        {% endif %}
+        </p>
       </div>
 
     </aside>
@@ -85,7 +90,7 @@
             <li><a href="day.html">Today</a></li>
             <li><a href="all.html">All</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
           </ul>
         </div>
       </div>

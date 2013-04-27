@@ -13,7 +13,8 @@ urlpatterns = patterns(
         r'^all/',
         TemplateView.as_view(template_name="photoplanet/all.html"),
         name='all'),
-    url(r'^feedback/', include('feedback.urls'))
+    url(r'^feedback/', include('feedback.urls')),
+    url(r'', include('users.urls')),
 )
 
 # http://stackoverflow.com/questions/9047054/heroku-handling-static-files-in-django-app
