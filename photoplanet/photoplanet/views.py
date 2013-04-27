@@ -1,4 +1,6 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
+from datetime import date
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
@@ -11,14 +13,17 @@ from .models import Photo
 LARGE_MEDIA_MAX_ID = 100000000000000000
 MEDIA_COUNT = 20
 MEDIA_TAG = 'donetsk'
+PHOTOS_PER_PAGE = 10
 
 
 def home(request):
-    return render(request, 'photoplanet/index.html')
+    photos = Photo.objects.filter(
+        created_time__gte=date.today()).order_by('-like_count')[:PHOTOS_PER_PAGE]
+    return render(request, 'photoplanet/index.html', {'photos': photos})
 
 
 def all(request):
-    photos = Photo.objects.order_by('-created_time').all()[:10]
+    photos = Photo.objects.order_by('-created_time').all()[:PHOTOS_PER_PAGE]
     return render(request, 'photoplanet/all.html', {'photos': photos})
 
 

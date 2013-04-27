@@ -1,1 +1,0 @@
- 30 - show selected photos on main page
