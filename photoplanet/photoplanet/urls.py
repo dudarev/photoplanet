@@ -9,6 +9,7 @@ from django.conf import settings
 urlpatterns = patterns(
     '',
     url(r'^$', 'photoplanet.views.home', name='home'),
+    url(r'^load_photos/$', 'photoplanet.views.load_photos', name='load_photos'),
     url(
         r'^all/',
         TemplateView.as_view(template_name="photoplanet/all.html"),
