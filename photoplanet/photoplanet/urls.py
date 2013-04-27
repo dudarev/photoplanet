@@ -15,6 +15,8 @@ urlpatterns = patterns(
         name='all'),
     url(r'^feedback/', include('feedback.urls')),
     url(r'', include('users.urls')),
+    url(r'', include('social_auth.urls')),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name='logout')
 )
 
 # http://stackoverflow.com/questions/9047054/heroku-handling-static-files-in-django-app
