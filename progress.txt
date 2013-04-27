@@ -1,3 +1,1 @@
- 29 - show last 10 photos from stream on /all page
  30 - show selected photos on main page
- 35 - make all template show last 10 photos

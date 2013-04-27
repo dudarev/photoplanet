@@ -1,5 +1,4 @@
 from django.conf.urls import include, patterns, url
-from django.views.generic import TemplateView
 from django.conf import settings
 
 # Uncomment the next two lines to enable the admin:
@@ -7,13 +6,14 @@ from django.conf import settings
 # admin.autodiscover()
 
 urlpatterns = patterns(
+    'photoplanet.views',
+    url(r'^$', 'home', name='home'),
+    url(r'^load_photos/$', 'load_photos', name='load_photos'),
+    url(r'^all/$', 'all', name='all')
+)
+
+urlpatterns += patterns(
     '',
-    url(r'^$', 'photoplanet.views.home', name='home'),
-    url(r'^load_photos/$', 'photoplanet.views.load_photos', name='load_photos'),
-    url(
-        r'^all/',
-        TemplateView.as_view(template_name="photoplanet/all.html"),
-        name='all'),
     url(r'^feedback/', include('feedback.urls')),
     url(r'', include('users.urls')),
     url(r'', include('social_auth.urls')),

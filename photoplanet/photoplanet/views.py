@@ -17,6 +17,11 @@ def home(request):
     return render(request, 'photoplanet/index.html')
 
 
+def all(request):
+    photos = Photo.objects.order_by('-created_time').all()[:10]
+    return render(request, 'photoplanet/all.html', {'photos': photos})
+
+
 def _img_tag(s):
     return '<img src="{}"/>'.format(s)
 
@@ -34,14 +39,14 @@ def load_photos(request):
     # list of media is in the first element of the tuple
     for m in search_result[0]:
         p, is_created = Photo.objects.get_or_create(
-                id=m.id, username=m.user.username)
+            id=m.id, username=m.user.username)
         is_like_count_updated = False
         if not p.like_count == m.like_count:
-            p.username=m.user.username
-            p.user_avatar_url=m.user.profile_picture
-            p.photo_url=m.images['standard_resolution'].url
-            p.created_time=m.created_time
-            p.like_count=m.like_count
+            p.username = m.user.username
+            p.user_avatar_url = m.user.profile_picture
+            p.photo_url = m.images['standard_resolution'].url
+            p.created_time = m.created_time
+            p.like_count = m.like_count
             p.save()
             is_like_count_updated = True
         info += '<li>{} {} {} {} {} {} {} {}</li>'.format(
