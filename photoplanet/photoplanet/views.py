@@ -5,6 +5,8 @@ from django.conf import settings
 
 from instagram.client import InstagramAPI
 
+from .models import Photo
+
 
 LARGE_MEDIA_MAX_ID = 100000000000000000
 MEDIA_COUNT = 20
@@ -20,6 +22,9 @@ def _img_tag(s):
 
 
 def load_photos(request):
+    """
+    Loads photos from Instagram and populates database.
+    """
 
     api = InstagramAPI(
         client_id=settings.INSTAGRAM_CLIENT_ID,
@@ -28,13 +33,27 @@ def load_photos(request):
     info = ''
     # list of media is in the first element of the tuple
     for m in search_result[0]:
-        info += '<li>{} {} {} {} {} {}</li>'.format(
+        p, is_created = Photo.objects.get_or_create(
+                id=m.id, username=m.user.username)
+        is_like_count_updated = False
+        if not p.like_count == m.like_count:
+            p.username=m.user.username
+            p.user_avatar_url=m.user.profile_picture
+            p.photo_url=m.images['standard_resolution'].url
+            p.created_time=m.created_time
+            p.like_count=m.like_count
+            p.save()
+            is_like_count_updated = True
+        info += '<li>{} {} {} {} {} {} {} {}</li>'.format(
             m.id,
             m.user.username,
             _img_tag(m.user.profile_picture),
             _img_tag(m.images['standard_resolution'].url),
             m.created_time,
-            m.like_count)
+            m.like_count,
+            is_created,
+            is_like_count_updated
+        )
 
     html = "<html><body><ul>{}</ul></body></html>".format(info)
     return HttpResponse(html)
