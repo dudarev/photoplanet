@@ -1,0 +1,2 @@
+ 37 - pagination for all photos
+ 38 - make it work on heroku
