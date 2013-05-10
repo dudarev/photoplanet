@@ -3,7 +3,7 @@ from datetime import date
 
 from django.http import HttpResponse
 from django.conf import settings
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from instagram.client import InstagramAPI
 
@@ -30,6 +30,10 @@ class AllPhotosListView(ListView):
     template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
     context_object_name = 'photos'  # default is object_list
     paginate_by = 10
+
+
+class PhotoDetailView(DetailView):
+    model = Photo
 
 
 def _img_tag(s):

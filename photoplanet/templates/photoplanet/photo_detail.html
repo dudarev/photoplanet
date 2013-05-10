@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load photoplanet_extra %}
+
+
+{% block content %}
+    <div class="large-9 columns" role="content">
+
+      <article>
+
+        <div class="row">
+          <div class="large-4 columns hide-for-small">
+            <img src="{{ photo.user_avatar_url }}" alt="avatar" />
+            <h6><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+          </div>
+          <div class="large-8 columns centered">
+            <img src="{{ photo.photo_url }}" alt="photo" /><br />
+            <h6 class="show-for-small"><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+            <div class="time">
+                {{ photo.created_time }}
+            likes: {{ photo.like_count }}
+            </div>
+            <div class="voting">
+                          <a href="#">up</a> (0) |
+                          <a href="#">down</a> (0)
+            </div>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+{% endblock content %}
