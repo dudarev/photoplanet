@@ -1,2 +1,4 @@
 *.pyc
 mockups/.sass-cache
+photoplanet/photoplanet/settings/instagram.py
+photoplanet/photoplanet.db

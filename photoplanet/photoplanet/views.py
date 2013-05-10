@@ -1,6 +1,81 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
-from django.shortcuts import render_to_response
+from datetime import date
+
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from instagram.client import InstagramAPI
+
+from .models import Photo
+
+
+LARGE_MEDIA_MAX_ID = 100000000000000000
+MEDIA_COUNT = 20
+MEDIA_TAG = 'donetsk'
+PHOTOS_PER_PAGE = 10
 
 
 def home(request):
-    return render_to_response('photoplanet/index.html')
+    photos = Photo.objects.filter(
+        created_time__gte=date.today()).order_by('-like_count')[:PHOTOS_PER_PAGE]
+    return render(request, 'photoplanet/index.html', {'photos': photos})
+
+
+def all(request):
+    photos = Photo.objects.order_by('-created_time').all()
+
+    # https://docs.djangoproject.com/en/1.5/topics/pagination/
+    paginator = Paginator(photos, PHOTOS_PER_PAGE)
+    page = request.GET.get('page')
+    try:
+        photos = paginator.page(page)
+    except PageNotAnInteger:
+        photos = paginator.page(1)
+    except EmptyPage:
+        photos = paginator.page(paginator.num_pages)
+
+    return render(request, 'photoplanet/all.html', {'photos': photos})
+
+
+def _img_tag(s):
+    return '<img src="{}"/>'.format(s)
+
+
+def load_photos(request):
+    """
+    Loads photos from Instagram and populates database.
+    """
+
+    api = InstagramAPI(
+        client_id=settings.INSTAGRAM_CLIENT_ID,
+        client_secret=settings.INSTAGRAM_CLIENT_SECRET)
+    search_result = api.tag_recent_media(MEDIA_COUNT, LARGE_MEDIA_MAX_ID, MEDIA_TAG)
+    info = ''
+    # list of media is in the first element of the tuple
+    for m in search_result[0]:
+        p, is_created = Photo.objects.get_or_create(
+            id=m.id, username=m.user.username)
+        is_like_count_updated = False
+        if not p.like_count == m.like_count:
+            p.username = m.user.username
+            p.user_avatar_url = m.user.profile_picture
+            p.photo_url = m.images['standard_resolution'].url
+            p.created_time = m.created_time
+            p.like_count = m.like_count
+            p.save()
+            is_like_count_updated = True
+        info += '<li>{} {} {} {} {} {} {} {}</li>'.format(
+            m.id,
+            m.user.username,
+            _img_tag(m.user.profile_picture),
+            _img_tag(m.images['standard_resolution'].url),
+            m.created_time,
+            m.like_count,
+            is_created,
+            is_like_count_updated
+        )
+
+    html = "<html><body><ul>{}</ul></body></html>".format(info)
+    return HttpResponse(html)
