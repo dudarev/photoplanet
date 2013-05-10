@@ -1,1 +1,6 @@
- 38 - make it work on heroku
+ 39 - all view as CBV
+ 40 - day view as CBV
+ 41 - single photo view as DetailView
+ 42 - feedback as ModelForm
+ 43 - model for Feedback
+ 44 - django-braces for LoginRequired Mixin
