@@ -4,6 +4,7 @@ from datetime import date
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.conf import settings
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from instagram.client import InstagramAPI
 
@@ -23,7 +24,18 @@ def home(request):
 
 
 def all(request):
-    photos = Photo.objects.order_by('-created_time').all()[:PHOTOS_PER_PAGE]
+    photos = Photo.objects.order_by('-created_time').all()
+
+    # https://docs.djangoproject.com/en/1.5/topics/pagination/
+    paginator = Paginator(photos, PHOTOS_PER_PAGE)
+    page = request.GET.get('page')
+    try:
+        photos = paginator.page(page)
+    except PageNotAnInteger:
+        photos = paginator.page(1)
+    except EmptyPage:
+        photos = paginator.page(paginator.num_pages)
+
     return render(request, 'photoplanet/all.html', {'photos': photos})
 
 
