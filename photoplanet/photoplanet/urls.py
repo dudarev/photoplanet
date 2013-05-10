@@ -1,15 +1,17 @@
 from django.conf.urls import include, patterns, url
 from django.conf import settings
 
+from .views import HomePhotosListView, AllPhotosListView
+
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns(
     'photoplanet.views',
-    url(r'^$', 'home', name='home'),
-    url(r'^load_photos/$', 'load_photos', name='load_photos'),
-    url(r'^all/$', 'all', name='all')
+    url(r'^$', HomePhotosListView.as_view(), name='home'),
+    url(r'^all/$', AllPhotosListView.as_view(), name='all'),
+    url(r'^load_photos/$', 'load_photos', name='load_photos')
 )
 
 urlpatterns += patterns(

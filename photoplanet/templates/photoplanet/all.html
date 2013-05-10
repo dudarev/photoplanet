@@ -42,18 +42,18 @@
         <div class="large-4 columns hide-for-small"></div>
         <div class="large-8 columns pagination-centered">
           <ul class="pagination">
-            {% if photos.has_previous %}
-            <li class="arrow"><a href="?page={{ photos.previous_page_number }}">&laquo;</a></li>
+            {% if page_obj.has_previous %}
+            <li class="arrow"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
             {% endif %}
-            {% if photos.has_previous %}
-            <li><a href="?page={{ photos.previous_page_number }}">{{ photos.previous_page_number }}</a></li>
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
             {% endif %}
-            <li class="current"><a href="#">{{ photos.number }}</a></li>
-            {% if photos.has_next %}
-            <li><a href="?page={{ photos.next_page_number }}">{{ photos.next_page_number }}</a></li>
+            <li class="current"><a href="#">{{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
             {% endif %}
-            {% if photos.has_next %}
-            <li class="arrow"><a href="?page={{ photos.next_page_number }}">&raquo;</a></li>
+            {% if page_obj.has_next %}
+            <li class="arrow"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
             {% endif %}
           </ul>
         </div>

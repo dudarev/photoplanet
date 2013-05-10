@@ -2,9 +2,8 @@
 from datetime import date
 
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.conf import settings
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView
 
 from instagram.client import InstagramAPI
 
@@ -17,26 +16,20 @@ MEDIA_TAG = 'donetsk'
 PHOTOS_PER_PAGE = 10
 
 
-def home(request):
-    photos = Photo.objects.filter(
+class HomePhotosListView(ListView):
+    model = Photo
+    queryset = Photo.objects.filter(
         created_time__gte=date.today()).order_by('-like_count')[:PHOTOS_PER_PAGE]
-    return render(request, 'photoplanet/index.html', {'photos': photos})
+    template_name = 'photoplanet/index.html'
+    context_object_name = 'photos'
 
 
-def all(request):
-    photos = Photo.objects.order_by('-created_time').all()
-
-    # https://docs.djangoproject.com/en/1.5/topics/pagination/
-    paginator = Paginator(photos, PHOTOS_PER_PAGE)
-    page = request.GET.get('page')
-    try:
-        photos = paginator.page(page)
-    except PageNotAnInteger:
-        photos = paginator.page(1)
-    except EmptyPage:
-        photos = paginator.page(paginator.num_pages)
-
-    return render(request, 'photoplanet/all.html', {'photos': photos})
+class AllPhotosListView(ListView):
+    model = Photo
+    queryset = Photo.objects.order_by('-created_time').all()
+    template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
+    context_object_name = 'photos'  # default is object_list
+    paginate_by = 10
 
 
 def _img_tag(s):
