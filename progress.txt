@@ -1,2 +1,0 @@
- 42 - feedback as ModelForm
- 44 - django-braces for LoginRequired Mixin
