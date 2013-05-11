@@ -24,7 +24,7 @@
           <div class="large-8 columns centered">
             <img src="{{ p.photo_url }}" alt="photo" /><br />
             <h6 class="show-for-small"><a href="{% instagram_url p.username %}" target="_blank">@{{ p.username }}</a></h6>
-            <div class="time"><a href="photo.html"> 
+            <div class="time"><a href="{% url 'photo-detail' p.id %}"> 
                 {{ p.created_time }}
               </a>
             likes: {{ p.like_count }}
