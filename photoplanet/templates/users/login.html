@@ -13,7 +13,7 @@
             Login with</h2>
 
             <ul>
-              <li><a href="{% url "socialauth_begin" "instagram" %}">Instagram</a></li>
+              <li><a href="{% url "socialauth_begin" "instagram" %}{% if next %}?next={{ next }}{% endif %}">Instagram</a></li>
               <li>...
             </ul>
 
