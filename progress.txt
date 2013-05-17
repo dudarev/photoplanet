@@ -1,0 +1,15 @@
+ 45 - code for hw#5
+ 47 - votes can be sent by logged in users via ajax with csrf token
+ 48 - user may navigate through days, voting is possible only for current day
+ 49 - admin is enabled for feedback
+ 50 - make it run on Heroku
+ 51 - make it run on donetskogram.com
+ 52 - link Today works
+ 53 - link About works
+ 54 - change copyright note
+ 55 - CBV style view for voting photo up and down
+ 56 - AJAX requests attached to links for voting up and down
+ 57 - message when not logged in
+ 58 - message about vote chage
+ 59 - add model for vote
+ 60 - update vote model and vote counts for a photo
