@@ -34,7 +34,7 @@
        <ul class="button-group">
          <li><a href="{% url_for_today %}" class="button">Today</a></li>
          <li><a href="{% url 'all' %}" class="button">All</a></li>
-         <li><a href="about.html" class="button">About</a></li>
+         <li><a href="{% url 'about' %}" class="button">About</a></li>
          {% if user.is_authenticated %}
          <li><a href="{% url 'logout' %}" class="button">Logout</a></li>
          {% else %}
@@ -75,6 +75,7 @@
         Not logged in.
         {% endif %}
         </p>
+        <p><a href="{% url 'feedback' %}">Give some feedback</a></p>
       </div>
 
     </aside>
@@ -98,7 +99,7 @@
           <ul class="inline-list right">
             <li><a href="{% url_for_today %}">Today</a></li>
             <li><a href="all.html">All</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
