@@ -9,7 +9,19 @@
 {% block content %}
     <div class="large-9 columns" role="content">
 
-      {% for photo in photos %}
+      {% if not object_list %}
+      <article>
+        <div class="row">
+          <div class="large-4 columns hide-for-small">
+          </div>
+          <div class="large-8 columns centered">
+            No photos were voted this day.
+          </div>
+        </div>
+      </article>
+      {% endif %}
+
+      {% for photo in object_list %}
 
       <article>
 
@@ -42,27 +54,26 @@
         <div class="large-4 columns hide-for-small"></div>
         <div class="large-8 columns pagination-centered">
           <ul class="pagination">
-            {% if page_obj.has_previous %}
-            <li class="arrow"><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% endif %}
-            {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
-            {% endif %}
-            <li class="current"><a href="#">{{ page_obj.number }}</a></li>
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
-            {% endif %}
-            {% if page_obj.has_next %}
-            <li class="arrow"><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% endif %}
+
+            <p>
+                {% if previous_day %}
+                    &larr; 
+                    <a href="{% url "photo-date-view" previous_day.year previous_day.month previous_day.day %}">
+                    {{ previous_day |date:"Y-m-d"}}
+                    </a>
+                {% endif %}
+                {% if previous_day and next_day %}--{% endif %}
+                {% if next_day %}
+                    <a href="{% url "photo-date-view" next_day.year next_day.month next_day.day %}">
+                    {{ next_day |date:"Y-m-d" }} 
+                    </a>
+                    &rarr;
+                {% endif %}
+            </p>
+
           </ul>
         </div>
       </div>
-
-      <div class="row">
-        <a href="{% url "load-photos" %}">Load more recent photos</a>
-      </div>
-
 
     </div>
 {% endblock content %}

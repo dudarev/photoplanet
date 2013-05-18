@@ -12,6 +12,18 @@
 {% block content %}
     <div class="large-9 columns" role="content">
 
+      {% if not photos %}
+      <article>
+        <div class="row">
+          <div class="large-4 columns hide-for-small">
+          </div>
+          <div class="large-8 columns centered">
+            No photos were voted today. Browse around and upvote.
+          </div>
+        </div>
+      </article>
+      {% endif %}
+
       {% for p in photos %}
 
       <article>
@@ -26,8 +38,9 @@
             <h6 class="show-for-small"><a href="{% instagram_url p.username %}" target="_blank">@{{ p.username }}</a></h6>
             <div class="time"><a href="{% url 'photo-detail' p.id %}"> 
                 {{ p.created_time }}
-              </a>
-            likes: {{ p.like_count }}
+              </a> -- 
+            likes: {{ p.like_count }} --
+            votes: {{ p.vote_count }}
             </div>
           </div>
         </div>
@@ -39,14 +52,6 @@
       {% endif %}
 
       {% endfor %}
-
-
-      <div class="row pagination-row">
-        <div class="large-4 columns hide-for-small"></div>
-        <div class="large-8 columns pagination-centered">
-          <a href="day.html">&larr; 2013-04-01 </a> -  {% current_time "%Y-%m-%d" %} 
-        </div>
-      </div>
 
     </div>
 {% endblock content %}
