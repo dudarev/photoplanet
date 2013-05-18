@@ -10,15 +10,14 @@ jQuery(function($) {
         photo = voteLink.closest('.photo');
         photo_id = photo.attr('data-photoid');
 
-        console.log('photo id:');
-        console.log(voteLink.text());
-        console.log();
-
         $.ajax({
             url: '/photo/' + photo_id + '/vote',
             data: {vote_type: voteLink.text()},
             type: 'POST',
-            success: function(data){alert(JSON.stringify(data));},
+            success: function(data){
+                voteLink.siblings('.vote_count').text(data.vote_count);
+                alert(data.message);
+            },
             error:   function(data){alert('Some error occured');}
         });
     }

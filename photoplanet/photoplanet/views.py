@@ -71,6 +71,7 @@ class PhotoVoteView(JSONResponseMixin, BaseUpdateView):
                 'your_username': user.username,
                 'vote_type': vote_type,
                 'vote_count': photo.vote_count,
+                'message': 'Vote is updated.',
             }
 
         else:
