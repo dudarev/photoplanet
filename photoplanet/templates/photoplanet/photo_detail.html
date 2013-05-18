@@ -2,6 +2,9 @@
 {% load staticfiles %}
 {% load photoplanet_extra %}
 
+{% block js %} {{ block.super }}
+  <script src="{% static "js/vote.js" %}"></script>
+{% endblock js %}
 
 {% block content %}
     <div class="large-9 columns" role="content">
@@ -13,17 +16,14 @@
             <img src="{{ photo.user_avatar_url }}" alt="avatar" />
             <h6><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
           </div>
-          <div class="large-8 columns centered">
+          <div class="large-8 columns centered photo" data-photoid="{{ photo.pk }}">
             <img src="{{ photo.photo_url }}" alt="photo" /><br />
             <h6 class="show-for-small"><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
             <div class="time">
                 {{ photo.created_time }}
             likes: {{ photo.like_count }}
             </div>
-            <div class="voting">
-                          <a href="#">up</a> (0) |
-                          <a href="#">down</a> (0)
-            </div>
+            {% include "photoplanet/voting.html" %}
           </div>
         </div>
 

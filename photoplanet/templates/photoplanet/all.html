@@ -2,31 +2,31 @@
 {% load staticfiles %}
 {% load photoplanet_extra %}
 
+{% block js %} {{ block.super }}
+  <script src="{% static "js/vote.js" %}"></script>
+{% endblock js %}
 
 {% block content %}
     <div class="large-9 columns" role="content">
 
-      {% for p in photos %}
+      {% for photo in photos %}
 
       <article>
 
         <div class="row">
           <div class="large-4 columns hide-for-small">
-            <img src="{{ p.user_avatar_url }}" alt="avatar" />
-            <h6><a href="{% instagram_url p.username %}" target="_blank">@{{ p.username }}</a></h6>
+            <img src="{{ photo.user_avatar_url }}" alt="avatar" />
+            <h6><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
           </div>
-          <div class="large-8 columns centered">
-            <img src="{{ p.photo_url }}" alt="photo" /><br />
-            <h6 class="show-for-small"><a href="{% instagram_url p.username %}" target="_blank">@{{ p.username }}</a></h6>
-            <div class="time"><a href="{% url 'photo-detail' p.id %}"> 
-                {{ p.created_time }}
+          <div class="large-8 columns centered photo" data-photoid="{{ photo.pk }}">
+            <img src="{{ photo.photo_url }}" alt="photo" /><br />
+            <h6 class="show-for-small"><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+            <div class="time"><a href="{% url 'photo-detail' photo.id %}"> 
+                {{ photo.created_time }}
               </a>
-            likes: {{ p.like_count }}
+            likes: {{ photo.like_count }}
             </div>
-            <div class="voting">
-                          <a href="#">up</a> |
-                          <a href="#">down</a>
-            </div>
+            {% include "photoplanet/voting.html" %}
           </div>
         </div>
 

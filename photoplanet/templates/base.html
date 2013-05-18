@@ -14,9 +14,13 @@
   {% block css %}
   <link rel="stylesheet" href="{% static "css/normalize.css" %}">
   <link rel="stylesheet" href="{% static "css/pp.css" %}">
-  {% endblock %}
+  {% endblock css %}
 
+  {% block js %}
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="{% static "js/csrf.js" %}"></script>
   <script src="{% static "js/vendor/custom.modernizr.js" %}"></script>
+  {% endblock js %}
 
 </head>
 <body>

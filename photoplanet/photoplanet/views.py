@@ -1,11 +1,14 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
 from datetime import date
 
-from django.http import HttpResponse
+from instagram.client import InstagramAPI
+
+from django.http import HttpResponse, Http404
 from django.conf import settings
 from django.views.generic import ListView, DetailView
+from django.views.generic.edit import BaseUpdateView
 
-from instagram.client import InstagramAPI
+from braces.views import JSONResponseMixin
 
 from .models import Photo
 
@@ -36,6 +39,27 @@ class PhotoDetailView(DetailView):
     model = Photo
 
 
+# http://django-braces.readthedocs.org/en/latest/#jsonresponsemixin
+class PhotoVoteView(JSONResponseMixin, BaseUpdateView):
+    model = Photo
+
+    def get(self, request, *args, **kwargs):
+        raise Http404
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        user = self.request.user
+        vote_type = request.POST.get('vote_type', '')
+
+        context_dict = {
+            'username': self.object.username,
+            'your_username': user.username,
+            'vote_type': vote_type,
+        }
+        
+        return self.render_json_response(context_dict)
+
+    
 def _img_tag(s):
     return '<img src="{}"/>'.format(s)
 
