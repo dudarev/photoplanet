@@ -1,4 +1,3 @@
  45 - code for hw#5
  50 - make it run on Heroku
  51 - make it run on donetskogram.com
- 61 - link to load more photos on the all page
