@@ -8,3 +8,6 @@ runserver:
 
 shell:
 	$(MANAGE) shell --settings=photoplanet.settings.local
+
+syncdb:
+	$(MANAGE) syncdb --settings=photoplanet.settings.local

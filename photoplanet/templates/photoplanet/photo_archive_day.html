@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load photoplanet_extra %}
+
+{% block js %} {{ block.super }}
+  <script src="{% static "js/vote.js" %}"></script>
+{% endblock js %}
+
+{% block content %}
+    <div class="large-9 columns" role="content">
+
+      {% if not object_list %}
+      <article>
+        <div class="row">
+          <div class="large-4 columns hide-for-small">
+          </div>
+          <div class="large-8 columns centered">
+            No photos were voted this day.
+          </div>
+        </div>
+      </article>
+      {% endif %}
+
+      {% for photo in object_list %}
+
+      <article>
+
+        <div class="row">
+          <div class="large-4 columns hide-for-small">
+            <img src="{{ photo.user_avatar_url }}" alt="avatar" />
+            <h6><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+          </div>
+          <div class="large-8 columns centered photo" data-photoid="{{ photo.pk }}">
+            <img src="{{ photo.photo_url }}" alt="photo" /><br />
+            <h6 class="show-for-small"><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+            <div class="time"><a href="{% url 'photo-detail' photo.id %}"> 
+                {{ photo.created_time }}
+              </a>
+            likes: {{ photo.like_count }}
+            </div>
+            {% include "photoplanet/voting.html" %}
+          </div>
+        </div>
+
+      </article>
+
+      {% if not forloop.last %}
+      <hr />
+      {% endif %}
+      
+      {% endfor %}
+
+      <div class="row pagination-row">
+        <div class="large-4 columns hide-for-small"></div>
+        <div class="large-8 columns pagination-centered">
+          <ul class="pagination">
+
+            <p>
+                {% if previous_day %}
+                    &larr; 
+                    <a href="{% url "photo-date-view" previous_day.year previous_day.month previous_day.day %}">
+                    {{ previous_day |date:"Y-m-d"}}
+                    </a>
+                {% endif %}
+                {% if previous_day and next_day %}--{% endif %}
+                {% if next_day %}
+                    <a href="{% url "photo-date-view" next_day.year next_day.month next_day.day %}">
+                    {{ next_day |date:"Y-m-d" }} 
+                    </a>
+                    &rarr;
+                {% endif %}
+            </p>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+{% endblock content %}

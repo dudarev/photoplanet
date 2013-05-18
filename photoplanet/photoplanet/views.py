@@ -7,6 +7,7 @@ from django.http import HttpResponse, Http404
 from django.conf import settings
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseUpdateView
+from django.views.generic.dates import DayArchiveView
 
 from braces.views import JSONResponseMixin
 
@@ -22,7 +23,7 @@ PHOTOS_PER_PAGE = 10
 class HomePhotosListView(ListView):
     model = Photo
     queryset = Photo.objects.filter(
-        created_time__gte=date.today()).order_by('-like_count')[:PHOTOS_PER_PAGE]
+        created_time__gte=date.today()).order_by('-vote_count')[:PHOTOS_PER_PAGE]
     template_name = 'photoplanet/index.html'
     context_object_name = 'photos'
 
@@ -37,6 +38,16 @@ class AllPhotosListView(ListView):
 
 class PhotoDetailView(DetailView):
     model = Photo
+
+
+class PhotoDayArchiveView(DayArchiveView):
+    queryset = Photo.objects.filter(
+        vote_count__gt=0).order_by('-vote_count', '-like_count').all()
+    date_field = "created_time"
+    month_format = '%m'
+    make_object_list = True
+    allow_empty = True
+    paginate_by = 10
 
 
 # http://django-braces.readthedocs.org/en/latest/#jsonresponsemixin

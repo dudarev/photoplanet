@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load photoplanet_extra %}
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
@@ -31,7 +32,7 @@
     <div class="large-12 columns">
       <div class="nav-bar right hide-for-small">
        <ul class="button-group">
-         <li><a href="day.html" class="button">Today</a></li>
+         <li><a href="{% url_for_today %}" class="button">Today</a></li>
          <li><a href="{% url 'all' %}" class="button">All</a></li>
          <li><a href="about.html" class="button">About</a></li>
          {% if user.is_authenticated %}
@@ -95,7 +96,7 @@
         </div>
         <div class="large-6 columns">
           <ul class="inline-list right">
-            <li><a href="day.html">Today</a></li>
+            <li><a href="{% url_for_today %}">Today</a></li>
             <li><a href="all.html">All</a></li>
             <li><a href="about.html">About</a></li>
             {% if user.is_authenticated %}

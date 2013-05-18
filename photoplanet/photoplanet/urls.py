@@ -3,7 +3,8 @@ from django.conf import settings
 
 from .views import (
     HomePhotosListView, AllPhotosListView,
-    PhotoDetailView, PhotoVoteView)
+    PhotoDetailView, PhotoVoteView,
+    PhotoDayArchiveView)
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -12,6 +13,10 @@ from .views import (
 urlpatterns = patterns(
     'photoplanet.views',
     url(r'^$', HomePhotosListView.as_view(), name='home'),
+    url(r'^all/$', AllPhotosListView.as_view(), name='all'),
+    url(r'^(?P<year>\d{4})/(?P<month>\d+)/(?P<day>\d+)/$',
+        PhotoDayArchiveView.as_view(),
+        name="photo-date-view"),
     url(r'^all/$', AllPhotosListView.as_view(), name='all'),
     url(r'^photo/(?P<pk>\w+)/$', PhotoDetailView.as_view(), name='photo-detail'),
     url(r'^photo/(?P<pk>\w+)/vote$', PhotoVoteView.as_view(), name='photo-vote'),
