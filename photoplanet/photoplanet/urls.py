@@ -8,8 +8,10 @@ from .views import (
     PhotoDayArchiveView)
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
+print 'autodiscovered'
+
 
 urlpatterns = patterns(
     'photoplanet.views',
@@ -22,11 +24,12 @@ urlpatterns = patterns(
     url(r'^photo/(?P<pk>\w+)/$', PhotoDetailView.as_view(), name='photo-detail'),
     url(r'^photo/(?P<pk>\w+)/vote$', PhotoVoteView.as_view(), name='photo-vote'),
     url(r'^load_photos/$', 'load_photos', name='load_photos'),
-    url(r'^about/$', TemplateView.as_view(template_name='photoplanet/about.html'), name='about')
+    url(r'^about/$', TemplateView.as_view(template_name='photoplanet/about.html'), name='about'),
 )
 
 urlpatterns += patterns(
     '',
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^feedback/', include('feedback.urls')),
     url(r'', include('users.urls')),
     url(r'', include('social_auth.urls')),
