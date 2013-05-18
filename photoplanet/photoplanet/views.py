@@ -50,26 +50,34 @@ class PhotoVoteView(JSONResponseMixin, BaseUpdateView):
         photo = self.get_object()
         user = self.request.user
 
-        vote_type = request.POST.get('vote_type', '')
-        vote_value = 0
-        if '-1' in vote_type:
-            vote_value = -1
-        if '0' in vote_type:
+        if user.is_authenticated():
+
+            vote_type = request.POST.get('vote_type', '')
             vote_value = 0
-        if '+1' in vote_type:
-            vote_value = 1
+            if '-1' in vote_type:
+                vote_value = -1
+            if '0' in vote_type:
+                vote_value = 0
+            if '+1' in vote_type:
+                vote_value = 1
 
-        vote = Vote(user=user, photo=photo, vote_value=vote_value)
-        vote.save()
-        # load the object again because it was changed by vote.save()
-        photo = self.get_object()
+            vote = Vote(user=user, photo=photo, vote_value=vote_value)
+            vote.save()
+            # load the object again because it was changed by vote.save()
+            photo = self.get_object()
 
-        context_dict = {
-            'username': photo.username,
-            'your_username': user.username,
-            'vote_type': vote_type,
-            'vote_count': photo.vote_count,
-        }
+            context_dict = {
+                'username': photo.username,
+                'your_username': user.username,
+                'vote_type': vote_type,
+                'vote_count': photo.vote_count,
+            }
+
+        else:
+
+            context_dict = {
+                'message': 'You must be logged in to vote.',
+            }
         
         return self.render_json_response(context_dict)
 

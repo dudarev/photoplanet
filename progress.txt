@@ -7,5 +7,4 @@
  52 - link Today works
  53 - link About works
  54 - change copyright note
- 57 - message when not logged in
  58 - message about vote chage
