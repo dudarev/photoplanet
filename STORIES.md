@@ -14,11 +14,8 @@
 
 - No more than 10 photos selected today
 - Links to photos
-- Links to previous day if available
+- Links to previous day
 - Link to author
-- First paragraph from added description under the photo
-- Number of comments per photo
-- Date as a title
 - Link to about page
 - Link to all page
 - Link to login
@@ -27,7 +24,7 @@
 
 Everything as main and one addition
 
-- Links to previous and next day with photos (if available)
+- Links to previous and next day 
 
 ## Photo 
 
@@ -36,8 +33,6 @@ Everything as main and one addition
 - Vote up/down
 - Points
 - Author with link
-- A text about photo (maximum of 500 characters)
-- Link to edit text
 
 ## About
 
@@ -46,18 +41,19 @@ Everything as main and one addition
 
 ## All
 
-- Latest photos for a given instagram account
-- A button to load more at the bottom
+- Latest photos for a given Instagram hashtag
+- A link to load more at the bottom
 - Links to vote a photo up or down
 
 ## Login
 
 - Navigation link
-- Social icons that may be used for login
+- Social link that may be used for login
 
 ## Feedback
 
 - A form to send simple feedback that includes textarea for feedback, name and email
+
 
 # A user can do
 
