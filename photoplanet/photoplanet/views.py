@@ -10,7 +10,7 @@ from django.views.generic.edit import BaseUpdateView
 
 from braces.views import JSONResponseMixin
 
-from .models import Photo
+from .models import Photo, Vote
 
 
 LARGE_MEDIA_MAX_ID = 100000000000000000
@@ -47,14 +47,28 @@ class PhotoVoteView(JSONResponseMixin, BaseUpdateView):
         raise Http404
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
+        photo = self.get_object()
         user = self.request.user
+
         vote_type = request.POST.get('vote_type', '')
+        vote_value = 0
+        if '-1' in vote_type:
+            vote_value = -1
+        if '0' in vote_type:
+            vote_value = 0
+        if '+1' in vote_type:
+            vote_value = 1
+
+        vote = Vote(user=user, photo=photo, vote_value=vote_value)
+        vote.save()
+        # load the object again because it was changed by vote.save()
+        photo = self.get_object()
 
         context_dict = {
-            'username': self.object.username,
+            'username': photo.username,
             'your_username': user.username,
             'vote_type': vote_type,
+            'vote_count': photo.vote_count,
         }
         
         return self.render_json_response(context_dict)
