@@ -9,5 +9,4 @@
  54 - change copyright note
  57 - message when not logged in
  58 - message about vote chage
- 59 - add model for vote
  60 - update vote model and vote counts for a photo
