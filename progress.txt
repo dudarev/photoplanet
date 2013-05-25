@@ -1,5 +1,4 @@
  63 - code for lecture 6
- 64 - activate south app and initial migration
  65 - make some fields not required in feedback
  66 - create model for profile
  67 - manage command to load photos

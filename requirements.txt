@@ -1,4 +1,6 @@
 Django==1.5.1
+South==0.8.1
+argparse==1.2.1
 dj-database-url==0.2.1
 django-braces==1.0.0
 django-social-auth==0.7.23
