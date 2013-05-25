@@ -1,5 +1,3 @@
  63 - code for lecture 6
- 65 - make some fields not required in feedback
- 66 - create model for profile
  67 - manage command to load photos
  68 - fixture for photos

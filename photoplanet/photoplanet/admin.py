@@ -4,6 +4,7 @@ from feedback.models import Feedback
 
 
 class FeedbackAdmin(admin.ModelAdmin):
+    readonly_fields = ['created_at', ]
     pass
 
 
