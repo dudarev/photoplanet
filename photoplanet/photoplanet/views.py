@@ -14,6 +14,7 @@ from braces.views import JSONResponseMixin
 from .models import Photo, Vote
 
 
+# TODO: refactor! this is duplicated in load_photos.py management command
 LARGE_MEDIA_MAX_ID = 100000000000000000
 MEDIA_COUNT = 20
 MEDIA_TAG = 'donetsk'

@@ -1,3 +1,2 @@
  63 - code for lecture 6
- 67 - manage command to load photos
  68 - fixture for photos
