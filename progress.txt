@@ -1,2 +1,0 @@
- 63 - code for lecture 6
- 68 - fixture for photos
