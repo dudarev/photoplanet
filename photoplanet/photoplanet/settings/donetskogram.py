@@ -1,4 +1,4 @@
 from base import *
 from instagram import *
 
-CUSTOM_HEADLINE = False
+CUSTOM_HEADLINE = True

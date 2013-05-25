@@ -7,7 +7,7 @@ from django.http import HttpResponse, Http404
 from django.conf import settings
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseUpdateView
-from django.views.generic.dates import DayArchiveView
+from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
 from braces.views import JSONResponseMixin
 
@@ -20,11 +20,12 @@ MEDIA_TAG = 'donetsk'
 PHOTOS_PER_PAGE = 10
 
 
-class HomePhotosListView(ListView):
-    model = Photo
+class HomePhotosListView(TodayArchiveView):
     queryset = Photo.objects.filter(
-        created_time__gte=date.today()).order_by('-vote_count')[:PHOTOS_PER_PAGE]
-    template_name = 'photoplanet/index.html'
+        vote_count__gt=0).order_by('-vote_count', '-like_count').all()
+    date_field = "created_time"
+    allow_empty = True
+    paginate_by = 10
     context_object_name = 'photos'
 
 
