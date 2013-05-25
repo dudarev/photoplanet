@@ -129,5 +129,10 @@
   </script>
 
   <!-- End Footer -->
+
+  {% if INCLUDE_ANALYTICS %}
+        {% include "photoplanet/analytics.html" %}
+  {% endif %}
+
 </body>
 </html>
