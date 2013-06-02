@@ -1,3 +1,2 @@
  69 - code after lecture 7
- 72 - use F-object to update vote count
  73 - set CSRF cookie when visiting necessary views (issue 2 on Github)
