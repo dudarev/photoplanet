@@ -1,2 +1,1 @@
  69 - code after lecture 7
- 73 - set CSRF cookie when visiting necessary views (issue 2 on Github)
