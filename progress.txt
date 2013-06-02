@@ -1,4 +1,3 @@
  69 - code after lecture 7
- 71 - a view that shows all photos for which logged in user did not vote
  72 - use F-object to update vote count
  73 - set CSRF cookie when visiting necessary views (issue 2 on Github)

@@ -4,6 +4,7 @@ from django.views.generic import TemplateView
 
 from .views import (
     HomePhotosListView, AllPhotosListView,
+    VotePhotosListView,
     PhotoDetailView, PhotoVoteView,
     PhotoDayArchiveView)
 
@@ -20,7 +21,7 @@ urlpatterns = patterns(
     url(r'^(?P<year>\d{4})/(?P<month>\d+)/(?P<day>\d+)/$',
         PhotoDayArchiveView.as_view(),
         name="photo-date-view"),
-    url(r'^all/$', AllPhotosListView.as_view(), name='all'),
+    url(r'^vote/$', VotePhotosListView.as_view(), name='vote'),
     url(r'^photo/(?P<pk>\w+)/$', PhotoDetailView.as_view(), name='photo-detail'),
     url(r'^photo/(?P<pk>\w+)/vote$', PhotoVoteView.as_view(), name='photo-vote'),
     url(r'^load_photos/$', 'load_photos', name='load-photos'),

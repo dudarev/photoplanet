@@ -1,6 +1,4 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
-from datetime import date
-
 from instagram.client import InstagramAPI
 
 from django.http import HttpResponse, Http404
@@ -9,7 +7,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseUpdateView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
-from braces.views import JSONResponseMixin
+from braces.views import JSONResponseMixin, LoginRequiredMixin
 
 from .models import Photo, Vote
 
@@ -36,6 +34,14 @@ class AllPhotosListView(ListView):
     template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
     context_object_name = 'photos'  # default is object_list
     paginate_by = 10
+
+
+class VotePhotosListView(LoginRequiredMixin, AllPhotosListView):
+    def get_queryset(self):
+        return Photo.objects.exclude(
+            id__in=Vote.objects.filter(
+                user_id=self.request.user.id).values_list('photo_id', flat=True)
+        ).order_by('-created_time')
 
 
 class PhotoDetailView(DetailView):
