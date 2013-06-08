@@ -1,15 +1,15 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
-from datetime import date
-
 from instagram.client import InstagramAPI
 
-from django.http import HttpResponse, Http404
 from django.conf import settings
+from django.http import HttpResponse, Http404
+from django.views.decorators import csrf
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseUpdateView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
+from django.utils import decorators
 
-from braces.views import JSONResponseMixin
+from braces.views import JSONResponseMixin, LoginRequiredMixin
 
 from .models import Photo, Vote
 
@@ -21,7 +21,17 @@ MEDIA_TAG = 'donetsk'
 PHOTOS_PER_PAGE = 10
 
 
-class HomePhotosListView(TodayArchiveView):
+# https://github.com/mitar/django-missing/blob/master/missing/views.py#L7
+class EnsureCsrfCookieMixin(object):
+    """
+    Mixin for Django class-based views which forces a view to send the CSRF cookie.
+    """
+    @decorators.method_decorator(csrf.ensure_csrf_cookie)
+    def dispatch(self, *args, **kwargs):
+        return super(EnsureCsrfCookieMixin, self).dispatch(*args, **kwargs)
+
+
+class HomePhotosListView(EnsureCsrfCookieMixin, TodayArchiveView):
     queryset = Photo.objects.filter(
         vote_count__gt=0).order_by('-vote_count', '-like_count').all()
     date_field = "created_time"
@@ -30,7 +40,7 @@ class HomePhotosListView(TodayArchiveView):
     context_object_name = 'photos'
 
 
-class AllPhotosListView(ListView):
+class AllPhotosListView(EnsureCsrfCookieMixin, ListView):
     model = Photo
     queryset = Photo.objects.order_by('-created_time').all()
     template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
@@ -38,11 +48,19 @@ class AllPhotosListView(ListView):
     paginate_by = 10
 
 
-class PhotoDetailView(DetailView):
+class VotePhotosListView(LoginRequiredMixin, AllPhotosListView):
+    def get_queryset(self):
+        return Photo.objects.exclude(
+            id__in=Vote.objects.filter(
+                user_id=self.request.user.id).values_list('photo_id', flat=True)
+        ).order_by('-created_time')
+
+
+class PhotoDetailView(EnsureCsrfCookieMixin, DetailView):
     model = Photo
 
 
-class PhotoDayArchiveView(DayArchiveView):
+class PhotoDayArchiveView(EnsureCsrfCookieMixin, DayArchiveView):
     queryset = Photo.objects.filter(
         vote_count__gt=0).order_by('-vote_count', '-like_count').all()
     date_field = "created_time"

@@ -3,6 +3,7 @@ South==0.8.1
 argparse==1.2.1
 dj-database-url==0.2.1
 django-braces==1.0.0
+django-debug-toolbar==0.9.4
 django-social-auth==0.7.23
 gunicorn==0.17.2
 httplib2==0.8

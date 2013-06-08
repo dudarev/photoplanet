@@ -38,7 +38,6 @@ class Vote(models.Model):
             super(Vote, self).save()
 
         # update vote count for a photo
-        photo = self.photo
-        photo.vote_count = Vote.objects.filter(photo=photo).aggregate(
-            vote_count=models.Sum('vote_value'))['vote_count']
-        photo.save()
+        Photo.objects.filter(id=self.photo_id).update(
+            vote_count=Vote.objects.filter(photo=self.photo).aggregate(
+            vote_count=models.Sum('vote_value'))['vote_count'])
