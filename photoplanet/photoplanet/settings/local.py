@@ -1,3 +1,5 @@
+import sys
+
 from base import *
 from instagram import *
 
@@ -16,3 +18,7 @@ INTERNAL_IPS = ('127.0.0.1',)
 INSTALLED_APPS += (
     'debug_toolbar',
 )
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}

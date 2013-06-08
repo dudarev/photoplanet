@@ -1,5 +1,4 @@
  75 - homework 8
- 76 - mock objects for photos and test for all view
  77 - a vote may go from -1 to 2 (issue 6 on github)
  78 - test first for all view that it has +2 in it
  79 - make test pass

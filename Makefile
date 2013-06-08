@@ -12,3 +12,6 @@ shell:
 syncdb:
 	$(MANAGE) syncdb --settings=photoplanet.settings.local
 	$(MANAGE) migrate --settings=photoplanet.settings.local
+
+test:
+	$(MANAGE) test photoplanet --settings=photoplanet.settings.test
