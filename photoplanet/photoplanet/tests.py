@@ -28,10 +28,18 @@ class PhotosTest(TestCase):
     def setUp(self):
         self.all_url = reverse('all')
 
-    def test_all_photos_has_latest_photo_url(self):
+    def test_all_photos_view_has_latest_photo_url(self):
         """
+        Tests that latest photo url is in the all photos view.
         """
         photo = PhotoFactory.create()
         photo.save()
         response = self.client.get(self.all_url)
         self.assertTrue(photo.photo_url in response.content)
+
+    def test_all_photos_view_has_plus_two(self):
+        """
+        Tests that +2 is in the all photos view.
+        """
+        response = self.client.get(self.all_url)
+        self.assertTrue('+2' in response.content)
