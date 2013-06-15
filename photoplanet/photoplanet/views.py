@@ -84,13 +84,7 @@ class PhotoVoteView(JSONResponseMixin, BaseUpdateView):
         if user.is_authenticated():
 
             vote_type = request.POST.get('vote_type', '')
-            vote_value = 0
-            if '-1' in vote_type:
-                vote_value = -1
-            if '0' in vote_type:
-                vote_value = 0
-            if '+1' in vote_type:
-                vote_value = 1
+            vote_value = int(vote_type)
 
             vote = Vote(user=user, photo=photo, vote_value=vote_value)
             vote.save()
