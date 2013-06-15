@@ -1,4 +1,3 @@
  80 - homework 9
- 81 - create an API JSON view that return information about top photos for a day
  82 - create a view that shows 3x3 matrix with most voted photos
  83 - host created photos on s3
