@@ -16,7 +16,6 @@ jQuery(function($) {
             type: 'POST',
             success: function(data){
                 voteLink.siblings('.vote_count').text(data.vote_count);
-                alert(data.message);
             },
             error:   function(data){alert('Some error occured');}
         });
