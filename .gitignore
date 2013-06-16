@@ -5,3 +5,4 @@ photoplanet/photoplanet.db
 photoplanet/templates/photoplanet/custom_headline.html
 photoplanet/templates/photoplanet/analytics.html
 utils/*.jpg
+utils/config.py
