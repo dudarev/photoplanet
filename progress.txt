@@ -1,3 +1,0 @@
- 80 - homework 9
- 82 - create a view that shows 3x3 matrix with most voted photos
- 83 - host created photos on s3
