@@ -2,6 +2,10 @@ from django.conf.urls import include, patterns, url
 from django.conf import settings
 from django.views.generic import TemplateView
 
+# api
+from tastypie.api import Api
+from photoplanet.api import PhotoResource
+
 from .views import (
     HomePhotosListView, AllPhotosListView,
     VotePhotosListView,
@@ -12,6 +16,11 @@ from .views import (
 from django.contrib import admin
 admin.autodiscover()
 print 'autodiscovered'
+
+
+# api
+v1_api = Api(api_name='v1')
+v1_api.register(PhotoResource())
 
 
 urlpatterns = patterns(
@@ -26,6 +35,12 @@ urlpatterns = patterns(
     url(r'^photo/(?P<pk>\w+)/vote$', PhotoVoteView.as_view(), name='photo-vote'),
     url(r'^load_photos/$', 'load_photos', name='load-photos'),
     url(r'^about/$', TemplateView.as_view(template_name='photoplanet/about.html'), name='about'),
+)
+
+# api
+urlpatterns += patterns(
+    '',
+    (r'^api/', include(v1_api.urls)),
 )
 
 urlpatterns += patterns(
