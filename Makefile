@@ -13,5 +13,9 @@ syncdb:
 	$(MANAGE) syncdb --settings=photoplanet.settings.local
 	$(MANAGE) migrate --settings=photoplanet.settings.local
 
+
+# including necessary custom templates if they are not present in the repo
 test:
+	touch photoplanet/templates/photoplanet/custom_headline.html
+	touch photoplanet/templates/photoplanet/analytics.html
 	$(MANAGE) test photoplanet --settings=photoplanet.settings.test
