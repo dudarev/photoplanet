@@ -53,7 +53,7 @@ urlpatterns += patterns(
 )
 
 # http://stackoverflow.com/questions/9047054/heroku-handling-static-files-in-django-app
-# TODO: needs to be removed this is temporary to have static served from HEROKU
+# this is Heroku specific setting to serve static from Heroku
 urlpatterns += patterns(
     '',
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
