@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deploy &mdash; photoplanet 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="photoplanet 0.1 documentation" href="index.html" />
+    <link rel="next" title="Plans for the future" href="future.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="future.html" title="Plans for the future"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Deploy</a><ul>
+<li><a class="reference internal" href="#on-heroku">On Heroku</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="future.html"
+                        title="next chapter">Plans for the future</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/deploy.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="deploy">
+<h1>Deploy<a class="headerlink" href="#deploy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="on-heroku">
+<h2>On Heroku<a class="headerlink" href="#on-heroku" title="Permalink to this headline">¶</a></h2>
+<p>Assuming you followed <a class="reference internal" href="install.html#starting-on-localhost"><em>Starting on localhost</em></a>, check the steps below for starting the web app on Heroku
+(see <a class="reference external" href="https://devcenter.heroku.com/articles/django">Getting Started with Django on Heroku</a> for more details).</p>
+<p>Create a new Heroku app:</p>
+<div class="highlight-python"><pre>heroku create</pre>
+</div>
+<p>Rename the app to what seems more appropriate:</p>
+<div class="highlight-python"><pre>heroku apps:rename newname</pre>
+</div>
+<p>Set up the database (for more details see <a class="reference external" href="https://devcenter.heroku.com/articles/heroku-postgresql">Heroku documentation</a>):</p>
+<div class="highlight-python"><pre>heroku addons:add heroku-postgresql:dev
+heroku pg:promote YOUR_DATABSE_URL (generated and shown during previous step)</pre>
+</div>
+<p>Add necessary settings to environment variables:</p>
+<div class="highlight-python"><pre>heroku config:add PYTHONPATH=/photoplanet
+heroku config:add DJANGO_SETTINGS_MODULE=photoplanet.settings.heroku</pre>
+</div>
+<p>Check a <a class="reference external" href="http://tomatohater.com/2012/01/17/custom-django-management-commands-on-heroku/">blog post</a> explaining the first command.
+See <a class="reference external" href="https://docs.djangoproject.com/en/1.5/topics/settings/#envvar-DJANGO_SETTINGS_MODULE">Django documentation</a> for using environment variables
+to store location of the settings module.</p>
+<p>Set up a <strong>different</strong> app at <a class="reference external" href="http://instagram.com/developer/clients/register/">Instagram developers page</a>.
+Specify the following parameters there:
+<tt class="docutils literal"><span class="pre">WEBSITE</span> <span class="pre">URL:</span> <span class="pre">http://your-app-name.herokuapp.com/</span></tt> and <tt class="docutils literal"><span class="pre">REDIRECT</span> <span class="pre">URI:</span> <span class="pre">http://your-app-name.herokuapp.com/complete/instagram/</span></tt>:</p>
+<div class="highlight-python"><pre>heroku config:set INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
+heroku config:set INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET</pre>
+</div>
+<p>Sync the database:</p>
+<div class="highlight-python"><pre>heroku run photoplanet/manage.py syncdb
+heroku run photoplanet/manage.py migrate</pre>
+</div>
+<p>Now you can do a simple <tt class="docutils literal"><span class="pre">git</span> <span class="pre">push</span></tt> to deploy the application:</p>
+<div class="highlight-python"><pre>git push heroku master</pre>
+</div>
+<p>Open the app in your browser:</p>
+<div class="highlight-python"><pre>heroku apps:open</pre>
+</div>
+<p>You may want to change search term which is for now is hardcoded in the settings (grep code for <tt class="docutils literal"><span class="pre">MEDIA_TAG</span></tt>).
+You need to commit this to master and push to Heroku.
+This will change in the future versions.</p>
+<p>The simplest approach to update recent photos on Heroku is to use <tt class="docutils literal"><span class="pre">cron</span></tt> from some external host:</p>
+<div class="highlight-python"><pre>* * * * * curl http://your-app-name.herokuapp.com/load_photos &gt; /tmp/cronlog.txt 2&gt;&amp;1</pre>
+</div>
+<p>Heroku has a periodic task scheduler with which you may set up a command similar to what is described at <a class="reference internal" href="install.html#loading-photos-with-cron"><em>Loading photos with cron</em></a>,
+but for that you need to activate payments.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="future.html" title="Plans for the future"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Artem Dudarev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>

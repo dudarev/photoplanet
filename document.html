@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Search &mdash; photoplanet 0.1 documentation</title>
+    <title>How to document &mdash; photoplanet 0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -23,15 +23,8 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/searchtools.js"></script>
     <link rel="top" title="photoplanet 0.1 documentation" href="index.html" />
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
-   
-
+    <link rel="prev" title="Plans for the future" href="future.html" /> 
   </head>
   <body>
     <div class="related">
@@ -40,11 +33,35 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="future.html" title="Plans for the future"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="future.html"
+                        title="previous chapter">Plans for the future</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/document.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -53,29 +70,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <script type="text/javascript">$('#fallback').hide();</script>
-  <p>
-    Please activate JavaScript to enable the search
-    functionality.
-  </p>
-  </div>
-  <p>
-    From here you can search these documents. Enter your search
-    words into the box below and click "search". Note that the search
-    function will automatically search for all of the words. Pages
-    containing fewer words won't appear in the result list.
-  </p>
-  <form action="" method="get">
-    <input type="text" name="q" value="" />
-    <input type="submit" value="search" />
-    <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-  
-  <div id="search-results">
-  
-  </div>
+  <div class="section" id="how-to-document">
+<h1>How to document<a class="headerlink" href="#how-to-document" title="Permalink to this headline">¶</a></h1>
+<p>If you have set up a directory with generated HTML based on the gist below,
+you may do the following from the <tt class="docutils literal"><span class="pre">/docs</span></tt> directory to publish to Gihub pages:</p>
+<div class="highlight-python"><pre>make html
+cd build/html  # or your build directory depending on config
+git commit -a -m 'made some changes, yo'
+git push origin gh-pages</pre>
+</div>
+<p>The full gist to setup the publishing of HTML pages generated with Sphinx to Github pages
+(originally by <a class="reference external" href="https://github.com/brantfaircloth">&#64;brantfaircloth</a>):</p>
+<script src="https://gist.github.com/dudarev/5871867.js">&nbsp;</script></div>
+
 
           </div>
         </div>
@@ -88,6 +95,9 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="future.html" title="Plans for the future"
+             >previous</a> |</li>
         <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>

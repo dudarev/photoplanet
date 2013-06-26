@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; photoplanet 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="photoplanet 0.1 documentation" href="index.html" />
+    <link rel="next" title="Deploy" href="deploy.html" />
+    <link rel="prev" title="Welcome to photoplanet’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="deploy.html" title="Deploy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to photoplanet’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#starting-on-localhost">Starting on localhost</a></li>
+<li><a class="reference internal" href="#custom-headline-and-analytics">Custom headline and analytics</a></li>
+<li><a class="reference internal" href="#loading-photos-with-cron">Loading photos with cron</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to photoplanet&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deploy.html"
+                        title="next chapter">Deploy</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/install.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starting-on-localhost">
+<span id="id1"></span><h2>Starting on localhost<a class="headerlink" href="#starting-on-localhost" title="Permalink to this headline">¶</a></h2>
+<p>Clone repository:</p>
+<div class="highlight-python"><pre>git clone https://github.com/dudarev/photoplanet.git
+cd photoplanet</pre>
+</div>
+<p>You may also just take one of the latest tags <a class="reference external" href="https://github.com/dudarev/photoplanet/tags">from Github</a>.</p>
+<p>Create virtualenv and install dependencies. For instance with <a class="reference external" href="http://virtualenvwrapper.readthedocs.org/en/latest/">virtualenvwrapper</a>:</p>
+<div class="highlight-python"><pre>mkvirtualenv photoplanet
+pip install -r requirements/local.txt</pre>
+</div>
+<p>Check that tests pass (this also creates custom headline and analytics files, see section below):</p>
+<div class="highlight-python"><pre>make test</pre>
+</div>
+<p>Run the commands necessary for creating of the database (see <tt class="docutils literal"><span class="pre">Makefile</span></tt> for more details).
+As of version 0.1 the command creates SQLite database:</p>
+<div class="highlight-python"><pre>make syncdb</pre>
+</div>
+<p>Launch instance of development server with:</p>
+<div class="highlight-python"><pre>make runserver</pre>
+</div>
+<p>Navigate to <a class="reference external" href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a> to see the running site.</p>
+<p>Create an app at <a class="reference external" href="http://instagram.com/developer/clients/register/">Instagram developers page</a>.
+Specify the following parameters there:
+<tt class="docutils literal"><span class="pre">WEBSITE</span> <span class="pre">URL:</span> <span class="pre">http://127.0.0.1:8000/</span></tt> and <tt class="docutils literal"><span class="pre">REDIRECT</span> <span class="pre">URI:</span> <span class="pre">http://127.0.0.1:8000/complete/instagram/</span></tt>.</p>
+<p>Copy Instagram settings file and updated variables with what you have obtain from Instagram:</p>
+<div class="highlight-python"><pre>cp photoplanet/photoplanet/settings/instagram.sample.py photoplanet/photoplanet/settings/instagram.py</pre>
+</div>
+<p>At the moment there is a utility view that loads recent photos from Instagram:
+<a class="reference external" href="http://127.0.0.1:8000/load_photos/">http://127.0.0.1:8000/load_photos/</a>.
+The photos may also be loaded with custom management command:</p>
+<div class="highlight-python"><pre>make load_photos</pre>
+</div>
+</div>
+<div class="section" id="custom-headline-and-analytics">
+<h2>Custom headline and analytics<a class="headerlink" href="#custom-headline-and-analytics" title="Permalink to this headline">¶</a></h2>
+<p>If you&#8217;d like to use a custom headline in the template you need to add file
+<tt class="docutils literal"><span class="pre">templates/photoplanet/custom_headline.html</span></tt> and specify <tt class="docutils literal"><span class="pre">CUSTOM_HEADLINE</span> <span class="pre">=</span> <span class="pre">True</span></tt> in you settings.</p>
+<p>To include Google Analytics add
+<tt class="docutils literal"><span class="pre">templates/photoplanet/analytics.html</span></tt> and specify <tt class="docutils literal"><span class="pre">INCLUDE_ANALYTICS</span> <span class="pre">=</span> <span class="pre">True</span></tt>.</p>
+</div>
+<div class="section" id="loading-photos-with-cron">
+<span id="id2"></span><h2>Loading photos with cron<a class="headerlink" href="#loading-photos-with-cron" title="Permalink to this headline">¶</a></h2>
+<p>Adjust necessary paths</p>
+<div class="highlight-crontab"><pre>* * * * * cd /path/to/manage.py/ &amp;&amp; /where/your/envs/photoplanet/bin/python2.7 /path/to/manage.py/manage.py load_photos --settings=photoplanet.settings.correct &gt; /tmp/cronlog.txt 2&gt;&amp;1</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="deploy.html" title="Deploy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to photoplanet’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">photoplanet 0.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Artem Dudarev.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2b1.
+    </div>
+  </body>
+</html>
