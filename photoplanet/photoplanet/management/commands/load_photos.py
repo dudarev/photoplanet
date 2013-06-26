@@ -1,17 +1,11 @@
 # https://docs.djangoproject.com/en/1.5/howto/custom-management-commands/
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils.timezone import utc
 
 from instagram.client import InstagramAPI
 
 from photoplanet.models import Photo
-
-
-# TODO: refactor! this is duplicated in views.py
-LARGE_MEDIA_MAX_ID = 100000000000000000
-MEDIA_COUNT = 100
-MEDIA_TAG = 'donetsk'
 
 
 class Command(BaseCommand):
@@ -23,7 +17,11 @@ class Command(BaseCommand):
         api = InstagramAPI(
             client_id=settings.INSTAGRAM_CLIENT_ID,
             client_secret=settings.INSTAGRAM_CLIENT_SECRET)
-        search_result = api.tag_recent_media(MEDIA_COUNT, LARGE_MEDIA_MAX_ID, MEDIA_TAG)
+        search_result = api.tag_recent_media(
+            settings.MEDIA_COUNT,
+            settings.LARGE_MEDIA_MAX_ID,
+            settings.MEDIA_TAG
+        )
         info = ''
         # list of media is in the first element of the tuple
         for m in search_result[0]:

@@ -1,5 +1,8 @@
 # Django settings for photoplanet project.
 
+# import settings specific to the app
+from app import *
+
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
