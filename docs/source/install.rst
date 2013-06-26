@@ -1,6 +1,8 @@
 Installation
 ============
 
+.. _starting-on-localhost:
+
 Starting on localhost
 ----------------------------------
 
@@ -55,6 +57,7 @@ If you'd like to use a custom headline in the template you need to add file
 To include Google Analytics add
 ``templates/photoplanet/analytics.html`` and specify ``INCLUDE_ANALYTICS = True``.
 
+.. _loading-photos-with-cron:
 
 Loading photos with cron
 -------------------------

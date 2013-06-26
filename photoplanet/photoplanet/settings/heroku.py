@@ -4,6 +4,8 @@ import dj_database_url
 
 from base import *
 
+CUSTOM_HEADLINE = False
+INCLUDE_ANALYTICS = False
 
 # https://devcenter.heroku.com/articles/django#django-settings
 
