@@ -13,3 +13,5 @@ Contents:
 
     install
     deploy
+    future
+    document
