@@ -12,4 +12,6 @@ Photo Planet is a web application that aggregates photos from social media (Twit
 
 From Wikipedia: In online media, Planet is a feed aggregator application designed to collect posts from the weblogs of members of an Internet community and display them on a single page. [One such aggregator](http://www.planetplanet.org/) was written in Python. It powers for example [Python Planet](http://planet.python.org/) with posts about Python itself.
 
-For documentation see `docs` directory.
+For documentation see `docs` directory. Docs are published at
+
+http://dudarev.github.io/photoplanet/
