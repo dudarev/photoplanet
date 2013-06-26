@@ -1,4 +1,0 @@
- 86 - homework after lecture 10
- 87 - create documentation with Sphinx
- 88 - remove all TODOs
- 89 - complete documentation

@@ -14,13 +14,6 @@ from braces.views import JSONResponseMixin, LoginRequiredMixin
 from .models import Photo, Vote
 
 
-# TODO: refactor! this is duplicated in load_photos.py management command
-LARGE_MEDIA_MAX_ID = 100000000000000000
-MEDIA_COUNT = 20
-MEDIA_TAG = 'donetsk'
-PHOTOS_PER_PAGE = 10
-
-
 # https://github.com/mitar/django-missing/blob/master/missing/views.py#L7
 class EnsureCsrfCookieMixin(object):
     """
@@ -36,7 +29,7 @@ class HomePhotosListView(EnsureCsrfCookieMixin, TodayArchiveView):
         vote_count__gt=0).order_by('-vote_count', '-like_count').all()
     date_field = "created_time"
     allow_empty = True
-    paginate_by = 10
+    paginate_by = settings.PHOTOS_PER_PAGE
     context_object_name = 'photos'
 
 
@@ -45,7 +38,7 @@ class AllPhotosListView(EnsureCsrfCookieMixin, ListView):
     queryset = Photo.objects.order_by('-created_time').all()
     template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
     context_object_name = 'photos'  # default is object_list
-    paginate_by = 10
+    paginate_by = settings.PHOTOS_PER_PAGE
 
 
 class VotePhotosListView(LoginRequiredMixin, AllPhotosListView):
@@ -67,7 +60,7 @@ class PhotoDayArchiveView(EnsureCsrfCookieMixin, DayArchiveView):
     month_format = '%m'
     make_object_list = True
     allow_empty = True
-    paginate_by = 10
+    paginate_by = settings.PHOTOS_PER_PAGE
 
 
 # http://django-braces.readthedocs.org/en/latest/#jsonresponsemixin
@@ -120,7 +113,7 @@ def load_photos(request):
     api = InstagramAPI(
         client_id=settings.INSTAGRAM_CLIENT_ID,
         client_secret=settings.INSTAGRAM_CLIENT_SECRET)
-    search_result = api.tag_recent_media(MEDIA_COUNT, LARGE_MEDIA_MAX_ID, MEDIA_TAG)
+    search_result = api.tag_recent_media(settings.MEDIA_COUNT, settings.LARGE_MEDIA_MAX_ID, settings.MEDIA_TAG)
     info = ''
     # list of media is in the first element of the tuple
     for m in search_result[0]:
