@@ -5,3 +5,5 @@ photoplanet/photoplanet.db
 utils/*.jpg
 utils/config.py
 docs/build
+htmlcov
+.coverage

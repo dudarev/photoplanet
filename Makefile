@@ -18,8 +18,15 @@ syncdb:
 test:
 	touch photoplanet/templates/photoplanet/custom_headline.html
 	touch photoplanet/templates/photoplanet/analytics.html
-	$(MANAGE) test photoplanet --settings=photoplanet.settings.test
-
+	PYTHONPATH=$(PYTHONPATH) \
+	DJANGO_SETTINGS_MODULE=photoplanet.settings.test \
+	coverage run --source=$(PROJECT_NAME) $(PROJECT_NAME)/manage.py test $(PROJECT_NAME)
+	coverage html
 
 load_photos:
 	$(MANAGE) load_photos --settings=photoplanet.settings.local
+
+serve_coverage:
+	@echo "Browse to http://localhost:4567/"
+	@cd htmlcov; \
+	python -m SimpleHTTPServer 4567
