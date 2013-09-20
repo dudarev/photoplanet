@@ -7,9 +7,12 @@ from tastypie.api import Api
 from photoplanet.api import PhotoResource
 
 from .views import (
-    HomePhotosListView, AllPhotosListView,
+    HomePhotosListView,
+    UserPhotosListView,
+    AllPhotosListView,
     VotePhotosListView,
-    PhotoDetailView, PhotoVoteView,
+    PhotoDetailView,
+    PhotoVoteView,
     PhotoDayArchiveView)
 
 # Uncomment the next two lines to enable the admin:
@@ -35,6 +38,7 @@ urlpatterns = patterns(
     url(r'^photo/(?P<pk>\w+)/vote$', PhotoVoteView.as_view(), name='photo-vote'),
     url(r'^load_photos/$', 'load_photos', name='load-photos'),
     url(r'^about/$', TemplateView.as_view(template_name='photoplanet/about.html'), name='about'),
+    url(r'^user/(?P<username>\w+)/$', UserPhotosListView.as_view(), name='user-photos'),
 )
 
 # api

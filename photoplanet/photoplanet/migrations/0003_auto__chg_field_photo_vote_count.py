@@ -10,7 +10,7 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Changing field 'Photo.vote_count'
-        db.alter_column(u'photoplanet_photo', 'vote_count', self.gf('django.db.models.fields.FloatField')(null=True))
+        db.alter_column(u'photoplanet_photo', 'vote_count', self.gf('django.db.models.fields.IntegerField')())
 
     def backwards(self, orm):
 
@@ -62,7 +62,8 @@ class Migration(SchemaMigration):
             'photo_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True'}),
             'user_avatar_url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True'}),
             'username': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'vote_count': ('django.db.models.fields.FloatField', [], {'null': 'True'})
+            'vote_count': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'vote_prediction': ('django.db.models.fields.FloatField', [], {'null': 'True'})
         },
         u'photoplanet.vote': {
             'Meta': {'object_name': 'Vote'},

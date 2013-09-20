@@ -6,7 +6,7 @@
             "photo_url": "http://distilleryimage0.s3.amazonaws.com/ce1635eac11a11e1a9f71231382044a1_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_184517085_75sq_1369076045.jpg", 
             "username": "shurmahan", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "223687609260481200_184517085"
@@ -18,7 +18,7 @@
             "photo_url": "http://distilleryimage0.s3.amazonaws.com/1da1a2f6ca9f11e18e3c22000a1e8b97_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_184517085_75sq_1369076045.jpg", 
             "username": "shurmahan", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "232465378719079272_184517085"
@@ -30,7 +30,7 @@
             "photo_url": "http://distilleryimage8.s3.amazonaws.com/41ac6a2ad7b311e19fdb22000a1e8ad6_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_196307145_75sq_1365439187.jpg", 
             "username": "al_dasha", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "244528327222725584_196307145"
@@ -42,7 +42,7 @@
             "photo_url": "http://distilleryimage8.s3.amazonaws.com/75c46b24883811e2957d22000a1fa40f_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_196307145_75sq_1365439187.jpg", 
             "username": "al_dasha", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "407339591203392464_196307145"
@@ -54,7 +54,7 @@
             "photo_url": "http://distilleryimage11.s3.amazonaws.com/e4f6459ea45d11e2a1b122000a1f9702_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_230921373_75sq_1368716803.jpg", 
             "username": "dyachenk0", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "433299904385087807_230921373"
@@ -66,7 +66,7 @@
             "photo_url": "http://distilleryimage6.s3.amazonaws.com/603d3ea6ba2011e2921422000a1fb704_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_261952877_75sq_1365359378.jpg", 
             "username": "gakova_angelina", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "453369679242394254_261952877"
@@ -90,7 +90,7 @@
             "photo_url": "http://distilleryimage8.s3.amazonaws.com/e9b95672bc8911e2873722000a1fcfc8_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_196307145_75sq_1365439187.jpg", 
             "username": "al_dasha", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "455594591033330132_196307145"
@@ -102,7 +102,7 @@
             "photo_url": "http://distilleryimage1.s3.amazonaws.com/104564d6bd7811e283d022000aaa0956_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_261952877_75sq_1365359378.jpg", 
             "username": "gakova_angelina", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "456452619014830885_261952877"
@@ -126,7 +126,7 @@
             "photo_url": "http://distilleryimage11.s3.amazonaws.com/a2d8e7eabf7211e2a64f22000a1f968e_7.jpg", 
             "user_avatar_url": "http://images.ak.instagram.com/profiles/profile_19397034_75sq_1348861108.jpg", 
             "username": "alexmazuka", 
-            "vote_count": null
+            "vote_count": 0
         }, 
         "model": "photoplanet.photo", 
         "pk": "458277738866789795_19397034"

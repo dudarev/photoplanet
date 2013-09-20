@@ -27,7 +27,7 @@ load_photos:
 	$(MANAGE) load_photos --settings=photoplanet.settings.local
 
 rank_photos:
-	$(MANAGE) rank_photos --settings=photoplanet.settings.local
+	$(MANAGE) rank_photos 200 --settings=photoplanet.settings.local
 
 serve_coverage:
 	@echo "Browse to http://localhost:4567/"

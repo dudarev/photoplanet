@@ -1,23 +1,17 @@
-from math import exp
-
 from django.core.management.base import BaseCommand
-from django.db.models import Avg
 
 from photoplanet.models import Photo
 
 
 class Command(BaseCommand):
-    help = 'Automatically add some rank based on previous photos'
+    help = "Automatically add some rank based on previous photos"
+    args = "<Number of photos to update>"
 
     def handle(self, *args, **options):
-        photos = Photo.objects.filter(vote_count=None).order_by('-created_time')
+        UPDATE_NUMBER = 200
+        if args:
+            UPDATE_NUMBER = args[0]
+        photos = Photo.objects.order_by('-created_time')[:UPDATE_NUMBER]
         for p in photos:
             print p.username
-            print Photo.objects.filter(username=p.username)
-            vote_avg = Photo.objects.filter(username=p.username).aggregate(
-                Avg('vote_count'))['vote_count__avg']
-            if vote_avg is None:
-                vote_avg = 0.5
-            vote_scaled = 1. / (1. + exp(0.5 - vote_avg))
-            p.vote_count = vote_scaled
-            p.save()
+            p.update_vote_prediction()

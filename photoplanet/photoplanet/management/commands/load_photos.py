@@ -50,4 +50,5 @@ class Command(BaseCommand):
                 is_like_count_updated=is_like_count_updated
             )
             info += 40 * '-'
+            p.update_vote_prediction()
             self.stdout.write(info)

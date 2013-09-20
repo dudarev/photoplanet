@@ -25,12 +25,28 @@ class EnsureCsrfCookieMixin(object):
 
 
 class HomePhotosListView(EnsureCsrfCookieMixin, TodayArchiveView):
-    queryset = Photo.objects.filter(
-        vote_count__gt=0).order_by('-vote_count', '-like_count').all()
+    # as template photo_archive_day.html is used since this is archive view
+    queryset = Photo.objects.order_by('-vote_count', '-vote_prediction').all()
     date_field = "created_time"
     allow_empty = True
     paginate_by = settings.PHOTOS_PER_PAGE
     context_object_name = 'photos'
+
+
+class UserPhotosListView(EnsureCsrfCookieMixin, ListView):
+    model = Photo
+    queryset = Photo.objects.filter().order_by('-created_time').all()
+    template_name = 'photoplanet/user_photos.html'
+    context_object_name = 'photos'  # default is object_list
+    paginate_by = settings.PHOTOS_PER_PAGE
+
+    def get_queryset(self):
+        return Photo.objects.filter(username=self.kwargs['username']).order_by('-created_time')
+
+    def get_context_data(self, **kwargs):
+        context = super(UserPhotosListView, self).get_context_data(**kwargs)
+        context['username'] = self.kwargs['username']
+        return context
 
 
 class AllPhotosListView(EnsureCsrfCookieMixin, ListView):
@@ -55,7 +71,7 @@ class PhotoDetailView(EnsureCsrfCookieMixin, DetailView):
 
 class PhotoDayArchiveView(EnsureCsrfCookieMixin, DayArchiveView):
     queryset = Photo.objects.filter(
-        vote_count__gt=0).order_by('-vote_count', '-like_count').all()
+        vote_count__gt=0).order_by('-vote_count', '-vote_prediction').all()
     date_field = "created_time"
     month_format = '%m'
     make_object_list = True
@@ -113,7 +129,8 @@ def load_photos(request):
     api = InstagramAPI(
         client_id=settings.INSTAGRAM_CLIENT_ID,
         client_secret=settings.INSTAGRAM_CLIENT_SECRET)
-    search_result = api.tag_recent_media(settings.MEDIA_COUNT, settings.LARGE_MEDIA_MAX_ID, settings.MEDIA_TAG)
+    search_result = api.tag_recent_media(
+        settings.MEDIA_COUNT, settings.LARGE_MEDIA_MAX_ID, settings.MEDIA_TAG)
     info = ''
     # list of media is in the first element of the tuple
     for m in search_result[0]:

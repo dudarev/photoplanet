@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from django.db import models
+from django.db.models import Avg
 from django.contrib.auth.models import User
 
 
@@ -16,11 +17,26 @@ class Photo(models.Model):
     photo_url = models.URLField(null=True)
     created_time = models.DateTimeField(null=True)
     like_count = models.IntegerField(null=True)
-    # vote can be float, fractional part is what is estimated based on previous votes
-    # formula used for estimated vote v:
-    # 1 / (1 + e^-(v - 0.5))
-    # 0.5 is so that if all votes are 0.5 it stays 0.5
-    vote_count = models.FloatField(null=True)
+    vote_count = models.IntegerField(null=False, default=0)
+    # formula used for estimation:
+    # likes * votes_avg / likes_avg
+    # it is float to have better precision
+    vote_prediction = models.FloatField(null=True)
+
+    def update_vote_prediction(self):
+            vote_avg = Photo.objects.filter(username=self.username).aggregate(
+                Avg('vote_count'))['vote_count__avg']
+            if vote_avg is None:
+                vote_avg = 0
+            like_avg = Photo.objects.filter(username=self.username).aggregate(
+                Avg('like_count'))['like_count__avg']
+            if like_avg is None:
+                like_avg = 0
+            if like_avg == 0:
+                self.vote_prediction = 0
+            else:
+                self.vote_prediction = self.like_count * vote_avg / like_avg
+            self.save()
 
     def __unicode__(self):
         return "by {} on {} vote: {}".format(
