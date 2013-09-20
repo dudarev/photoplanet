@@ -70,8 +70,7 @@ class PhotoDetailView(EnsureCsrfCookieMixin, DetailView):
 
 
 class PhotoDayArchiveView(EnsureCsrfCookieMixin, DayArchiveView):
-    queryset = Photo.objects.filter(
-        vote_count__gt=0).order_by('-vote_count', '-vote_prediction').all()
+    queryset = Photo.objects.order_by('-vote_count', '-vote_prediction').all()
     date_field = "created_time"
     month_format = '%m'
     make_object_list = True

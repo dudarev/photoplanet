@@ -15,4 +15,4 @@ def push():
 def pull():
     with cd(env.path):
         run('git pull origin master')
-        run('touch /etc/uwsgi/vassals/django.ini')
+        run('touch /etc/uwsgi/vassals/django_donetskogram.ini')
