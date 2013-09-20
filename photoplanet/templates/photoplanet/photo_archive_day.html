@@ -28,7 +28,7 @@
         <div class="row">
           <div class="large-4 columns hide-for-small">
             <img src="{{ photo.user_avatar_url }}" alt="avatar" />
-            <h6><a href="{% url "user-photos" photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
+            <h6><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
           </div>
           <div class="large-8 columns centered photo" data-photoid="{{ photo.pk }}">
             <img src="{{ photo.photo_url }}" alt="photo" /><br />
