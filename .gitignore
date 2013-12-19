@@ -7,3 +7,4 @@ utils/config.py
 docs/build
 htmlcov
 .coverage
+tags
