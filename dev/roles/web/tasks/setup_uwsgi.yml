@@ -1,0 +1,17 @@
+---
+
+- name: Install uwsgi
+  pip: name=uWSGI
+  tags: packages
+
+- name: Create the uwsgi configuration file
+  template: src=django.ini
+            dest={{ uwsgi_conf }}/django.ini
+            backup=yes
+
+- name: Ensure that the application site is enabled
+  command: ln -s {{ uwsgi_conf }}/django.ini
+           /etc/uwsgi/apps-enabled/django.ini
+           creates=/etc/uwsgi/apps-enabled/django.ini
+  notify: reload uwsgi
+

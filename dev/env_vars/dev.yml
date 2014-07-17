@@ -1,0 +1,12 @@
+---
+
+# Database settings.
+db_user: "photoplanet"
+db_name: "photoplanet"
+db_password: photoplanet
+
+
+# Application settings.
+django_secret_key:
+
+

@@ -1,0 +1,14 @@
+---
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart uwsgi
+  service: name=uwsgi_python27 state=restart
+
+- name: reload uwsgi
+  service: name=uwsgi_python27 state=reloaded
+
