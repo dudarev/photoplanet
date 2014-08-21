@@ -6,12 +6,21 @@
 
 - name: Create the uwsgi configuration file
   template: src=django.ini
-            dest={{ uwsgi_conf }}/django.ini
+            dest={{ uwsgi_conf }}/apps-available/django.ini
             backup=yes
+#- name: Add the application user to the www-group
+#  user: name={{ www_user }} group=www-data state=present
 
 - name: Ensure that the application site is enabled
-  command: ln -s {{ uwsgi_conf }}/django.ini
-           /etc/uwsgi/apps-enabled/django.ini
-           creates=/etc/uwsgi/apps-enabled/django.ini
-  notify: reload uwsgi
+  command: ln -s {{ uwsgi_conf }}/apps-available/django.ini
+           {{ uwsgi_conf }}/apps-enabled/django.ini
+           creates={{ uwsgi_conf }}/apps-enabled/django.ini
+#  notify: restart uwsgi
+
+- name: Start uwsgi
+  command: uwsgi --ini {{ uwsgi_conf }}/apps-enabled/django.ini
+
+- name: log file
+  command: chown www-data:www-data {{ application_log_dir }}/uwsgi.log 
+
 

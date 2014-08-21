@@ -11,4 +11,4 @@
 
 - include: setup_nginx.yml
 
-#- include: setup_uwsgi.yml
+- include: setup_uwsgi.yml

@@ -15,12 +15,15 @@ nginx_static_dir: "{{ virtualenv_path }}/static/"
 nginx_media_dir: "{{ virtualenv_path }}/media/"
 
 # www user and group
-#www_user: "{{ application_name }}"
+www_user: "{{ application_name }}"
 #www_group: "{{ application_name }}"
 www_user: vagrant 
+#www_user: www-data 
+#www_group: www-data 
 www_group: vagrant
 
 
 
 #uwsgi settings
-uwsgi_conf: "{{ project_path }}/dev/"
+#uwsgi_conf: "{{ project_path }}/dev/"
+uwsgi_conf: "/etc/uwsgi/" 

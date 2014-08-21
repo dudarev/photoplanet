@@ -8,3 +8,10 @@
 
 - name: Add the application user to the application group
   user: name={{ www_user }} group={{ www_group }} state=present
+
+#- name: Add the application user to the www-group
+#  user: name={{ www_user }} group=www-data state=presen
+- name: Add user to the group www-data
+#  sudo_user: name={{ www_user }}
+  command: usermod -G www-data -a {{ www_user }}
+

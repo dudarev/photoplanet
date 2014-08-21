@@ -17,4 +17,6 @@
 - name: Create the application log file
   command: touch {{ application_log_file }}
            creates={{ application_log_file }}
-
+         owner={{ www_user }}
+         group={{ www_group }}
+         mode=0774

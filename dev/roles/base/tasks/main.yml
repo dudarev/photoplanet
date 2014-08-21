@@ -16,6 +16,7 @@
     - python-dev
     - python-pip
     - python-pycurl
+    - uwsgi
   tags: packages
 
 - name: Install virtualenv
