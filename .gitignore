@@ -1,4 +1,6 @@
 *.pyc
+dev/.vagrant 
+dev/.vagrant/machines/default/virtualbox/action_provision
 mockups/.sass-cache
 photoplanet/photoplanet/settings/instagram.py
 photoplanet/photoplanet.db
