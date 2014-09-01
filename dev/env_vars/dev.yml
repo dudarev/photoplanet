@@ -7,7 +7,7 @@ db_password: photoplanet
 
 
 # Application settings.
-django_secret_key:'3fks6&*79(&0$eoo^yok#4nifk1rciu%v-o6zalazh#dh!$hno'
+django_secret_key: '3fks6&*79(&0$eoo^yok#4nifk1rciu%v-o6zalazh#dh!$hno'
 
 
 
