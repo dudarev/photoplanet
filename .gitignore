@@ -1,6 +1,10 @@
 *.pyc
-dev/.vagrant 
 dev/.vagrant/machines/default/virtualbox/action_provision
+dev/.vagrant/machines/default/virtualbox/action_set_name
+dev/.vagrant/machines/default/virtualbox/id
+dev/.vagrant/machines/default/virtualbox/index_uuid
+dev/.vagrant/machines/default/virtualbox/synced_folders
+dev/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
 mockups/.sass-cache
 photoplanet/photoplanet/settings/instagram.py
 photoplanet/photoplanet.db

@@ -4,7 +4,8 @@
   hosts: all
   sudo: yes
   sudo_user: root
-  remote_user: vagrant 
+#  remote_user: vagrant 
+  remote_user: root 
   vars:
     - setup_git_repo: yes
     - update_apt_cache: yes

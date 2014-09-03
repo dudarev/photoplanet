@@ -17,6 +17,13 @@
            creates={{ uwsgi_conf }}/apps-enabled/django.ini
 #  notify: restart uwsgi
 
+- name: Create the application log folder
+  file: path={{ application_log_dir }}
+        owner={{ www_user }}
+        group={{ www_group }}
+        mode=0774
+        state=directory
+
 - name: Start uwsgi
   command: uwsgi --ini {{ uwsgi_conf }}/apps-enabled/django.ini
 
