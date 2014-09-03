@@ -1,7 +1,7 @@
 ---
 
 - name: Ensure that the application file permissions are set properly
-  file: path={{ virtualenv_path }}
+  file: path={{ project_path }}
         recurse=yes
         owner={{ www_user }}
         group={{ www_group }}
