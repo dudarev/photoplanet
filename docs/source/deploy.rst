@@ -59,3 +59,18 @@ The simplest approach to update recent photos on Heroku is to use ``cron`` from 
 
 Heroku has a periodic task scheduler with which you may set up a command similar to what is described at :ref:`loading-photos-with-cron`,
 but for that you need to activate payments.
+
+On DigitalOcean 
+----------------
+
+Create a new droplet in DigitalOcean and install Ubuntu.
+Generating your SSH Public Key and add to the droplet.
+
+ssh-keygen -t rsa -b 4096
+cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
+
+Install the local computer Ansible
+( see 'Ansible Docs http://docs.ansible.com/intro_installation.html>`__ for more details).
+
+
+
