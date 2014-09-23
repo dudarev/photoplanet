@@ -67,10 +67,11 @@ Create a new droplet in DigitalOcean and install Ubuntu.
 Generating your SSH Public Key and add to the droplet.
 
 ssh-keygen -t rsa -b 4096
+
 cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
 
 Install the local computer Ansible
-( see 'Ansible Docs http://docs.ansible.com/intro_installation.html>`__ for more details).
+(see `Ansible Docs http://docs.ansible.com/intro_installation.html>`__ for more details).
 
 
 
