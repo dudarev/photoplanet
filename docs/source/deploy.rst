@@ -69,10 +69,17 @@ Generating your SSH Public Key and add to the droplet::
     ssh-keygen -t rsa -b 4096
     cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
 
-Install the local computer Ansible
+Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/intro_installation.html>`__ for more details or 
+`How to Install and Configure Ansible on an Ubuntu 12.04 VPS <https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-an-ubuntu-12-04-vps>`__)::
 
-(see `Ansible Docs <http://docs.ansible.com/intro_installation.html>`__ for more details or 
-`How to Install and Configure Ansible on an Ubuntu 12.04 VPS <https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-an-ubuntu-12-04-vps>`__).
+    sudo apt-get update
+    sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:rquillo/ansible
+    sudo apt-get update
+    sudo apt-get install ansible
+    
+
+
 
 
 
