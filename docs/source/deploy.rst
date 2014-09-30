@@ -77,7 +77,65 @@ Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/i
     sudo add-apt-repository ppa:rquillo/ansible
     sudo apt-get update
     sudo apt-get install ansible
-    
+
+Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev
+env_vars
+    base.yml
+    dev.yml
+roles
+    base/tasks
+        main.yml
+    db
+        handlers
+            main.yml
+        tasks
+            main.yml
+    web
+        handlers
+            main.yml
+        tasks
+            create_user_group.yml
+            main.yml
+            set_perm.yml
+            setup_django_app.yml
+            setup_git_repo.yml
+            setup_nginx.yml
+            setup_uwsgi.yml
+            setup_virtualenv.yml
+        templates
+            django.ini
+            photoplanet.conf
+        vars
+main.yml
+Vagrantfile
+hosts
+vagrant.yml
+
+In the file host you need to specify ip addresses of the servers on which to deploy.
+(see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
+In the file env_vars/dev.yml you need set::
+
+db_user: ""
+db_name: ""
+db_password:
+
+Deploy PhotoPlanet on you DigitalOcean server::
+
+    ansible-playbook -i vagrant.yml
+
+
+After installation it is necessary to set some variables.
+In file settings/base.py set SECRET_KEY
+File settings/instagram.sample.py should be replaced with the file settings/instagram.py set variables::
+
+INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
+INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
+
+Sync the database::
+
+manage.py syncdb
+manage.py migrate
+
 
 
 
