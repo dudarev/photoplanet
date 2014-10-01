@@ -80,38 +80,37 @@ Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/i
 
 Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev
 
-
-env_vars
-  base.yml
-  dev.yml
-roles
-  base/tasks
-    main.yml
-  db
-    handlers
-      main.yml
-    tasks
-      main.yml
-  web
-    handlers
-      main.yml
-    tasks
-      create_user_group.yml
-      main.yml
-      set_perm.yml
-      setup_django_app.yml
-      setup_git_repo.yml
-      setup_nginx.yml
-      setup_uwsgi.yml
-      setup_virtualenv.yml
-    templates
-      django.ini
-      photoplanet.conf
-    vars
-main.yml
-Vagrantfile
-hosts
-vagrant.yml
+    env_vars
+      base.yml
+      dev.yml
+    roles
+      base/tasks
+        main.yml
+    db
+      handlers
+        main.yml
+      tasks
+        main.yml
+    web
+      handlers
+        main.yml
+      tasks
+        create_user_group.yml
+        main.yml
+        set_perm.yml
+        setup_django_app.yml
+        setup_git_repo.yml
+        setup_nginx.yml
+        setup_uwsgi.yml
+        setup_virtualenv.yml
+      templates
+        django.ini
+        photoplanet.conf
+      vars
+        main.yml
+    Vagrantfile
+    hosts
+    vagrant.yml
 
 In the file host you need to specify ip addresses of the servers on which to deploy.
 (see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
@@ -138,9 +137,8 @@ INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
 Sync the database::
 
-
-manage.py syncdb
-manage.py migrate
+    manage.py syncdb
+    manage.py migrate
 
 
 
