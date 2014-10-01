@@ -138,6 +138,7 @@ INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
 Sync the database::
 
+
 manage.py syncdb
 manage.py migrate
 
