@@ -79,33 +79,34 @@ Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/i
     sudo apt-get install ansible
 
 Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev
+
 env_vars
-    base.yml
-    dev.yml
+  base.yml
+  dev.yml
 roles
-    base/tasks
+  base/tasks
+    main.yml
+  db
+    handlers
+      main.yml
+      tasks
         main.yml
-    db
-        handlers
-            main.yml
-        tasks
-            main.yml
-    web
-        handlers
-            main.yml
-        tasks
-            create_user_group.yml
-            main.yml
-            set_perm.yml
-            setup_django_app.yml
-            setup_git_repo.yml
-            setup_nginx.yml
-            setup_uwsgi.yml
-            setup_virtualenv.yml
-        templates
-            django.ini
-            photoplanet.conf
-        vars
+  web
+    handlers
+      main.yml
+    tasks
+      create_user_group.yml
+      main.yml
+      set_perm.yml
+      setup_django_app.yml
+      setup_git_repo.yml
+      setup_nginx.yml
+      setup_uwsgi.yml
+      setup_virtualenv.yml
+    templates
+      django.ini
+      photoplanet.conf
+    vars
 main.yml
 Vagrantfile
 hosts
