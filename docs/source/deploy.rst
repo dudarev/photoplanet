@@ -80,6 +80,7 @@ Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/i
 
 Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev
 
+
 env_vars
   base.yml
   dev.yml
@@ -89,8 +90,8 @@ roles
   db
     handlers
       main.yml
-      tasks
-        main.yml
+    tasks
+      main.yml
   web
     handlers
       main.yml
@@ -116,11 +117,14 @@ In the file host you need to specify ip addresses of the servers on which to dep
 (see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
 In the file env_vars/dev.yml you need set::
 
+
 db_user: ""
 db_name: ""
 db_password:
 
+
 Deploy PhotoPlanet on you DigitalOcean server::
+
 
     ansible-playbook -i vagrant.yml
 
