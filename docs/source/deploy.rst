@@ -63,14 +63,16 @@ but for that you need to activate payments.
 On DigitalOcean 
 ----------------
 
-Create a new droplet in DigitalOcean and install Ubuntu.
-Generating your SSH Public Key and add to the droplet::
+Create a new droplet in `DigitalOcean`_ and install Ubuntu.
+
+Generate your SSH Public Key and add it to the droplet::
 
     ssh-keygen -t rsa -b 4096
     cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
 
-Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/intro_installation.html>`__ for more details or 
-`How to Install and Configure Ansible on an Ubuntu 12.04 VPS <https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-an-ubuntu-12-04-vps>`__)::
+Install Ansible locally (see `Ansible Docs`_ for more details).
+To install on Ubuntu you may follow the guide from DigitalOcean: 
+`How to Install and Configure Ansible on an Ubuntu 12.04 VPS`_::
 
     sudo apt-get update
     sudo apt-get install python-software-properties
@@ -78,7 +80,7 @@ Install the local computer Ansible (see `Ansible Docs <http://docs.ansible.com/i
     sudo apt-get update
     sudo apt-get install ansible
 
-Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev
+Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev::
 
     env_vars
       base.yml
@@ -140,8 +142,6 @@ Sync the database::
     manage.py syncdb
     manage.py migrate
 
-
-
-
-
-
+.. _DigitalOcean: https://www.digitalocean.com/
+.. _Ansible Docs: http://docs.ansible.com/intro_installation.html
+.. _How to Install and Configure Ansible on an Ubuntu 12.04 VPS: https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-ansible-on-an-ubuntu-12-04-vps
