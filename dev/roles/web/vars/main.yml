@@ -27,4 +27,6 @@ www_group: photoplanet
 
 #uwsgi settings
 #uwsgi_conf: "{{ project_path }}/dev/"
-uwsgi_conf: "/etc/uwsgi/" 
+uwsgi_conf: "/etc/uwsgi/"
+
+cron_dir: "/var/spool/crontabs" 
