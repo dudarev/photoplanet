@@ -71,8 +71,8 @@ Generate your SSH Public Key and add it to the droplet::
     cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
 
 Install Ansible locally (see `Ansible Docs`_ for more details).
-To install on Ubuntu you may follow the guide from DigitalOcean: 
-`How to Install and Configure Ansible on an Ubuntu 12.04 VPS`_::
+To install on Ubuntu you may follow the guide from DigitalOcean 
+"`How to Install and Configure Ansible on an Ubuntu 12.04 VPS`_"::
 
     sudo apt-get update
     sudo apt-get install python-software-properties
@@ -114,28 +114,24 @@ Copy the local computer Ansible config files https://github.com/dudarev/photopla
     hosts
     vagrant.yml
 
-In the file host you need to specify ip addresses of the servers on which to deploy.
+In the file ``hosts`` you need to specify IP addresses of the servers on which to deploy.
 (see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
 In the file env_vars/dev.yml you need set::
 
-
-db_user: ""
-db_name: ""
-db_password:
-
+    db_user: ""
+    db_name: ""
+    db_password:
 
 Deploy PhotoPlanet on you DigitalOcean server::
 
-
-    ansible-playbook -i vagrant.yml
-
+    ansible-playbook vagrant.yml -i hosts
 
 After installation it is necessary to set some variables.
-In file settings/base.py set SECRET_KEY
-File settings/instagram.sample.py should be replaced with the file settings/instagram.py set variables::
+In file ``settings/base.py`` set ``SECRET_KEY``.
+File ``settings/instagram.sample.py`` should be replaced with the file ``settings/instagram.py`` set variables::
 
-INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
-INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
+    INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
+    INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
 Sync the database::
 
