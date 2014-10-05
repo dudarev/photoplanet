@@ -26,7 +26,7 @@
             dest={{ cron_dir }}/photoplanet
 
 - name: Change permision
-  command: chown {{ www_data }}:crontab {{ cron_dir }}/photoplanet
+  command: chown {{ www_user }}:crontab {{ cron_dir }}/photoplanet
 
 
 

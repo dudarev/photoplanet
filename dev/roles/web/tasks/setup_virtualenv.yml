@@ -1,7 +1,7 @@
 ---
 
-- name: Create venv dir
-  command: mkdir {{ virtualenv_path }}
+- name: Assures {{ virtualenv_path }} dir exists
+  file: path={{ virtualenv_path }} state=directory
 
 - name: Create the virtualenv
   command: virtualenv {{ virtualenv_path }} --no-site-packages

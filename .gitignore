@@ -5,6 +5,8 @@ dev/.vagrant/machines/default/virtualbox/id
 dev/.vagrant/machines/default/virtualbox/index_uuid
 dev/.vagrant/machines/default/virtualbox/synced_folders
 dev/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+dev/env_vars/dev.yml
+dev/hosts
 mockups/.sass-cache
 photoplanet/photoplanet/settings/instagram.py
 photoplanet/photoplanet.db

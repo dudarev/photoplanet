@@ -80,51 +80,22 @@ To install on Ubuntu you may follow the guide from DigitalOcean
     sudo apt-get update
     sudo apt-get install ansible
 
-Copy the local computer Ansible config files https://github.com/dudarev/photoplanet/tree/dev/dev::
-
-    env_vars
-      base.yml
-      dev.yml
-    roles
-      base/tasks
-        main.yml
-    db
-      handlers
-        main.yml
-      tasks
-        main.yml
-    web
-      handlers
-        main.yml
-      tasks
-        create_user_group.yml
-        main.yml
-        set_perm.yml
-        setup_django_app.yml
-        setup_git_repo.yml
-        setup_nginx.yml
-        setup_uwsgi.yml
-        setup_virtualenv.yml
-      templates
-        django.ini
-        photoplanet.conf
-      vars
-        main.yml
-    Vagrantfile
-    hosts
-    vagrant.yml
-
-In the file ``hosts`` you need to specify IP addresses of the servers on which to deploy.
-(see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
-In the file env_vars/dev.yml you need set::
+Copy ``dev/env_vars/dev.sample.yml`` to ``dev/env_vars/dev.yml`` and update settigns there,
+In the file ``dev/env_vars/dev.yml`` you need to set::
 
     db_user: ""
     db_name: ""
     db_password:
 
-Deploy PhotoPlanet on you DigitalOcean server::
+In the file ``dev/hosts`` you need to specify IP addresses of the servers on which to deploy.
+(see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
 
+Deploy PhotoPlanet on you DigitalOcean server::
+    
+    cd dev
     ansible-playbook vagrant.yml -i hosts
+
+TODO: change this.
 
 After installation it is necessary to set some variables.
 In file ``settings/base.py`` set ``SECRET_KEY``.
