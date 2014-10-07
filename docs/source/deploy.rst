@@ -80,14 +80,19 @@ To install on Ubuntu you may follow the guide from DigitalOcean
     sudo apt-get update
     sudo apt-get install ansible
 
-Copy ``dev/env_vars/dev.sample.yml`` to ``dev/env_vars/dev.yml`` and update settigns there,
+Make sure that the following two files exists and are modified::
+
+    dev/env_vars/dev.yml
+    dev/hosts
+
+For this, copy ``dev/env_vars/dev.sample.yml`` to ``dev/env_vars/dev.yml`` and update settigns there,
 In the file ``dev/env_vars/dev.yml`` you need to set::
 
     db_user: ""
     db_name: ""
     db_password:
 
-In the file ``dev/hosts`` you need to specify IP addresses of the servers on which to deploy.
+Also, copy ``dev/hosts.sample`` to ``dev/hosts``. There you need to specify IP addresses of the servers on which to deploy.
 (see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
 
 Deploy PhotoPlanet on you DigitalOcean server::
