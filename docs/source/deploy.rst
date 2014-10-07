@@ -109,6 +109,9 @@ File ``settings/instagram.sample.py`` should be replaced with the file ``setting
     INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
     INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
+
+TODO: this operation make after run virtualenv
+
 Sync the database::
 
     manage.py syncdb
