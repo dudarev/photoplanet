@@ -10,4 +10,11 @@ db_password: xxxxxx
 django_secret_key: 'xxxxxxxxxxxxx'
 
 
+#Instagram_tag
+tag:
+
+
+# instagram secret
+instagram_client_id:
+instagram_client_secret:
 

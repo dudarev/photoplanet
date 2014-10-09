@@ -36,11 +36,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
 #        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'photoplanet', # Or path to database file if using sqlite3.
+        'NAME': '{{ db_name }}', # Or path to database file if using sqlite3.
 #        'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'photoplanet',
-        'PASSWORD': 'photoplanet',
+        'USER': ' {{db_user }}',
+        'PASSWORD': '{{ db_password }}',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -114,7 +114,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = ''
+SECRET_KEY = '{{ django_secret_key }}'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
