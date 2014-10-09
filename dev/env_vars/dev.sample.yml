@@ -1,0 +1,13 @@
+---
+
+# Database settings.
+db_user: "xxxxxx"
+db_name: "xxxxxx"
+db_password: xxxxxx
+
+
+# Application settings.
+django_secret_key: 'xxxxxxxxxxxxx'
+
+
+
