@@ -7,5 +7,5 @@
 - name: cd
   command: cd {{ project_name }}
 - name: Clone branch dev
-  commang: git checkout -b dev origin/dev
+  command: git checkout -b dev origin/dev
 
