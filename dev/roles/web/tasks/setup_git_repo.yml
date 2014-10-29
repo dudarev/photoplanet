@@ -4,8 +4,6 @@
   git: repo={{ git_repo }} dest={{ project_path }} accept_hostkey=yes
   when: setup_git_repo
   tags: git
-- name: cd
-  command: cd {{ project_path }}
 - name: Clone branch dev
-  command: git checkout -b dev origin/dev
+  command: chdir={{ project_path }} git checkout -b dev origin/dev
 
