@@ -5,7 +5,7 @@
   when: setup_git_repo
   tags: git
 - name: cd
-  command: cd {{ project_name }}
+  command: cd {{ project_path }}
 - name: Clone branch dev
   command: git checkout -b dev origin/dev
 
