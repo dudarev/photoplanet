@@ -3,6 +3,7 @@
 - name: Install uwsgi
   pip: name=uWSGI
   tags: packages
+  sudo: yes 
 
 - name: Create the uwsgi configuration file
   template: src=django.ini
@@ -25,7 +26,7 @@
         state=directory
 
 - name: Start uwsgi
-  command: uwsgi --ini {{ uwsgi_conf }}/apps-enabled/django.ini
+  command: sudo -u {{ www_user }} uwsgi --ini {{ uwsgi_conf }}/apps-enabled/django.ini
 
 - name: log file
   command: chown www-data:www-data {{ application_log_dir }}/uwsgi.log 

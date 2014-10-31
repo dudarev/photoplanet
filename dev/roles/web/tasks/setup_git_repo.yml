@@ -5,5 +5,5 @@
   when: setup_git_repo
   tags: git
 - name: Clone branch dev
-  command: chdir={{ project_path }} git checkout -b dev origin/dev
+  command: chdir={{ project_path }} git checkout dev  
 
