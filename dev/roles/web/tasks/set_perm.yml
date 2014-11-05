@@ -8,11 +8,11 @@
         state=directory
 #  notify: restart application
 
-#- name: Make
-#  file: path={{ virtualenv_path }}
-#        recurse=yes
-#        owner={{ www_user }}
-#        group={{ www_group }}
-#        mode=0774
-#        state=directory
+- name: Make
+  file: path={{ virtualenv_path }}
+        recurse=yes
+        owner={{ www_user }}
+        group={{ www_group }}
+        mode=0774
+        state=directory
 
