@@ -1,13 +1,14 @@
 ---
 
 - name: Install PostgreSQL
-  apt: name={{ item }} update_cache={{ update_apt_cache }} state=installed
+  apt: name={{ item }} update_cache={{ update_apt_cache }} state=present 
   with_items:
     - postgresql
+    - postgresql-common
     - postgresql-contrib
     - libpq-dev
     - python-psycopg2
-  tags: packages
+#  tags: packages
 
 - name: Ensure the PostgreSQL service is running
   service: name=postgresql state=started enabled=yes

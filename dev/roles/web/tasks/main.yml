@@ -9,6 +9,8 @@
 
 - include: set_perm.yml
 
+#- include: setup_django_man.yml
+
 - include: setup_nginx.yml
 
 - include: setup_uwsgi.yml

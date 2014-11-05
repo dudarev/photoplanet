@@ -28,7 +28,7 @@
 - name: Start uwsgi
   command: sudo -u {{ www_user }} uwsgi --ini {{ uwsgi_conf }}/apps-enabled/django.ini
 
-- name: log file
-  command: chown www-data:www-data {{ application_log_dir }}/uwsgi.log 
+#- name: log file
+#  command: chown www-data:www-data {{ application_log_dir }}/uwsgi.log 
 
 
