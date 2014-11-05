@@ -100,20 +100,25 @@ Deploy PhotoPlanet on you DigitalOcean server::
     cd dev
     ansible-playbook vagrant.yml -i hosts
 
-TODO: change this.
 
 After installation it is necessary to set some variables.
+For user ``photoplanet``
 In file ``settings/base.py`` set ``SECRET_KEY``.
 File ``settings/instagram.sample.py`` should be replaced with the file ``settings/instagram.py`` set variables::
 
     INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
     INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
+And restart uwsgi::
 
-TODO: this operation make after run virtualenv
+    killall -9 uwsgi
+    uwsgi --ini /etc/uwsgi/apps-enabled/django.ini
 
-Sync the database::
-
+Sync the database.
+Run virtualenv ``cd /home/photoplanet/venv`` and make::
+	
+    sourse bin/activate
+    cd ../photoplanet/photoplanet
     manage.py syncdb
     manage.py migrate
 
