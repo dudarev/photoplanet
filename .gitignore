@@ -16,3 +16,5 @@ docs/build
 htmlcov
 .coverage
 tags
+.idea
+.DS_Store
