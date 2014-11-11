@@ -9,6 +9,7 @@
   template: src=django.ini
             dest={{ uwsgi_conf }}/apps-available/django.ini
             backup=yes
+            mode=644
 #- name: Add the application user to the www-group
 #  user: name={{ www_user }} group=www-data state=present
 
