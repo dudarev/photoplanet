@@ -63,12 +63,13 @@ but for that you need to activate payments.
 On DigitalOcean 
 ----------------
 
-Create a new droplet in `DigitalOcean`_ and install Ubuntu.
+Create a new droplet in `DigitalOcean`_ and install Ubuntu 14.04.
 
 Generate your SSH Public Key and add it to the droplet::
 
     ssh-keygen -t rsa -b 4096
     cat id_rsa.pub | ssh user@droplet_ip "cat >> ~/.ssh/authorized_keys"
+
 
 Install Ansible locally (see `Ansible Docs`_ for more details).
 To install on Ubuntu you may follow the guide from DigitalOcean 
@@ -80,47 +81,65 @@ To install on Ubuntu you may follow the guide from DigitalOcean
     sudo apt-get update
     sudo apt-get install ansible
 
+Get ansible config files::
+
+    mkdir deploy
+    cd deploy/
+    apt-get install git
+    git clone https://github.com/dudarev/photoplanet.git
+    cd photoplanet
+    git checkout --track origin/dev
+    cd dev/
+
 Make sure that the following two files exists and are modified::
+    
+    mv hosts.sample hosts
+    mv env_vars/dev.sample.yml env_vars/dev.yml    
 
-    dev/env_vars/dev.yml
-    dev/hosts
-
-For this, copy ``dev/env_vars/dev.sample.yml`` to ``dev/env_vars/dev.yml`` and update settigns there,
-In the file ``dev/env_vars/dev.yml`` you need to set::
+In the file ``env_vars/dev.yml`` you need to set::
 
     db_user: ""
     db_name: ""
     db_password:
 
-Also, copy ``dev/hosts.sample`` to ``dev/hosts``. There you need to specify IP addresses of the servers on which to deploy.
+In ``hosts`` you need to specify IP addresses of the servers on which to deploy.
 (see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
 
 Deploy PhotoPlanet on you DigitalOcean server::
     
-    cd dev
     ansible-playbook vagrant.yml -i hosts
 
 
-After installation it is necessary to set some variables.
-For user ``photoplanet``
-In file ``settings/base.py`` set ``SECRET_KEY``.
-File ``settings/instagram.sample.py`` should be replaced with the file ``settings/instagram.py`` set variables::
+After installation log onto the droplet via ssh and it is necessary to set some variables::
+
+    su photoplanet
+    cd /photoplanet/photoplanet/photoplanet/settings
+
+In file ``base.py`` set field DATABASE::
+    
+    NAME=db_user
+    USER=db_name
+    PASSWORD=db_password
+    SECRET_KEY=secret key django app
+
+In file ``instagram.py`` set variables::
 
     INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
     INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
+
+Sync the database. Run virtualenv and make::
+	
+    cd /home/photoplanet/venv
+    sourse bin/activate
+    cd ../photoplanet/photoplanet
+    manage.py syncdb
+    manage.py migrate
 
 And restart uwsgi::
 
     killall -9 uwsgi
     uwsgi --ini /etc/uwsgi/apps-enabled/django.ini
 
-Sync the database.
-Run virtualenv ``cd /home/photoplanet/venv`` and make::
-	
-    sourse bin/activate
-    cd ../photoplanet/photoplanet
-    manage.py syncdb
-    manage.py migrate
 
 .. _DigitalOcean: https://www.digitalocean.com/
 .. _Ansible Docs: http://docs.ansible.com/intro_installation.html
