@@ -110,7 +110,7 @@ Deploy PhotoPlanet on you DigitalOcean server::
     ansible-playbook vagrant.yml -i hosts
 
 
-After installation log onto the droplet via ssh and it is necessary to set some variables::
+After installation log into the droplet via ssh and it is necessary to set some variables::
 
     su photoplanet
     cd /photoplanet/photoplanet/photoplanet/settings
@@ -120,7 +120,7 @@ In file ``base.py`` set field DATABASE::
     NAME=db_user
     USER=db_name
     PASSWORD=db_password
-    SECRET_KEY=secret key django app
+    SECRET_KEY=secret_key_django_app
 
 In file ``instagram.py`` set variables::
 
@@ -132,8 +132,8 @@ Sync the database. Run virtualenv and make::
     cd /home/photoplanet/venv
     sourse bin/activate
     cd ../photoplanet/photoplanet
-    manage.py syncdb
-    manage.py migrate
+    ./manage.py syncdb
+    ./manage.py migrate
 
 And restart uwsgi::
 
