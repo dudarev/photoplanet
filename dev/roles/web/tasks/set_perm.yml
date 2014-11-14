@@ -10,9 +10,8 @@
 
 - name: Make
   file: path={{ virtualenv_path }}
-        recurse=yes
+#        recurse=yes
         owner={{ www_user }}
         group={{ www_group }}
-        mode=0774
-        state=directory
+        mode=0755 state=directory
 
