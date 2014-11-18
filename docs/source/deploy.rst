@@ -121,13 +121,14 @@ In file ``base.py`` set field DATABASE::
     USER=db_name
     PASSWORD=db_password
     SECRET_KEY=secret_key_django_app
+    HOST=localhost
 
 In file ``instagram.py`` set variables::
 
     INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
     INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
 
-Sync the database. Run virtualenv and make::
+Sync and migrate the database::
 	
     cd /home/photoplanet/venv
     sourse bin/activate
