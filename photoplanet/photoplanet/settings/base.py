@@ -2,6 +2,7 @@
 
 # import settings specific to the app
 from app import *
+from secret import DB_NAME, DB_PASSWORD, DB_USER, SECRET_KEY
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
@@ -36,12 +37,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
 #        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '{{ db_name }}', # Or path to database file if using sqlite3.
+        'NAME': DB_NAME, # Or path to database file if using sqlite3.
 #        'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': ' {{db_user }}',
-        'PASSWORD': '{{ db_password }}',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',             # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
 }
@@ -112,9 +113,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '{{ django_secret_key }}'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

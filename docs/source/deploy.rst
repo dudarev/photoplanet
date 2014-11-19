@@ -113,28 +113,21 @@ Deploy PhotoPlanet on you DigitalOcean server::
 After installation log into the droplet via ssh and it is necessary to set some variables::
 
     su photoplanet
-    cd /photoplanet/photoplanet/photoplanet/settings
+    cd /home/photoplanet/photoplanet/photoplanet/photoplanet/settings/
 
-In file ``base.py`` set field DATABASE::
-    
-    NAME=db_user
-    USER=db_name
-    PASSWORD=db_password
-    SECRET_KEY=secret_key_django_app
-    HOST=localhost
+Copy file ``secret.sample.py`` to ``secret.py`` and update the following variables:
+``DB_NAME``, ``DB_USER``, ``DB_PASSWORD``, ``SECRET_KEY``.
 
-In file ``instagram.py`` set variables::
-
-    INSTAGRAM_CLIENT_ID=YOUR_INSTAGRAM_CLIENT_ID
-    INSTAGRAM_CLIENT_SECRET=YOUR_INSTAGRAM_CLIENT_SECRET
+Similarly, copy file ``instagram.sample.py`` to ``instagram.py`` and set variables:
+``INSTAGRAM_CLIENT_ID`` and ``INSTAGRAM_CLIENT_SECRET``.
 
 Sync and migrate the database::
 	
     cd /home/photoplanet/venv
     sourse bin/activate
     cd ../photoplanet/photoplanet
-    ./manage.py syncdb
-    ./manage.py migrate
+    ./manage.py syncdb --settings=photoplanet.settings.web
+    ./manage.py migrate --settings=photoplanet.settings.web
 
 And restart uwsgi::
 
