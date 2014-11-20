@@ -93,17 +93,13 @@ Get ansible config files::
 
 Make sure that the following two files exists and are modified::
     
-    mv hosts.sample hosts
-    mv env_vars/dev.sample.yml env_vars/dev.yml    
+    cp hosts.sample hosts
+    cp env_vars/dev.sample.yml env_vars/dev.yml    
 
-In the file ``env_vars/dev.yml`` you need to set::
+In ``hosts`` you need to specify IP address of the server on which to deploy.
+See `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details.
 
-    db_user: ""
-    db_name: ""
-    db_password:
-
-In ``hosts`` you need to specify IP addresses of the servers on which to deploy.
-(see `Ansible Docs Hosts and Groups <http://docs.ansible.com/intro_inventory.html>`__ for more details)
+In the file ``env_vars/dev.yml`` you need to set secret variables.
 
 Deploy PhotoPlanet on you DigitalOcean server::
     
@@ -116,7 +112,8 @@ After installation log into the droplet via ssh and it is necessary to set some 
     cd /home/photoplanet/photoplanet/photoplanet/photoplanet/settings/
 
 Copy file ``secret.sample.py`` to ``secret.py`` and update the following variables:
-``DB_NAME``, ``DB_USER``, ``DB_PASSWORD``, ``SECRET_KEY``.
+``DB_NAME``, ``DB_USER``, ``DB_PASSWORD``, ``SECRET_KEY``. Use the values you used in
+``env_vars/dev.yml`` above.
 
 Similarly, copy file ``instagram.sample.py`` to ``instagram.py`` and set variables:
 ``INSTAGRAM_CLIENT_ID`` and ``INSTAGRAM_CLIENT_SECRET``.
