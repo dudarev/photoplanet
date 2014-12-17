@@ -21,6 +21,8 @@
             <h6 class="show-for-small"><a href="{% instagram_url photo.username %}" target="_blank">@{{ photo.username }}</a></h6>
             <div class="time">
                 {{ photo.created_time }}
+            <br>
+                {{ photo.caption }}
             likes: {{ photo.like_count }}
             </div>
             {% include "photoplanet/voting.html" %}

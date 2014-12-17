@@ -1,0 +1,29 @@
+
+PLAY [Deploy {{photoplanet}}] ************************************************* 
+
+GATHERING FACTS *************************************************************** 
+<178.62.177.195> ESTABLISH CONNECTION FOR USER: root
+<178.62.177.195> REMOTE_MODULE setup
+<178.62.177.195> EXEC ['ssh', '-C', '-tt', '-vvv', '-o', 'ControlMaster=auto', '-o', 'ControlPersist=60s', '-o', 'ControlPath=/home/photoplanet/.ansible/cp/ansible-ssh-%h-%p-%r', '-o', 'Port=22', '-o', 'KbdInteractiveAuthentication=no', '-o', 'PreferredAuthentications=gssapi-with-mic,gssapi-keyex,hostbased,publickey', '-o', 'PasswordAuthentication=no', '-o', 'User=root', '-o', 'ConnectTimeout=10', '178.62.177.195', "/bin/sh -c 'mkdir -p $HOME/.ansible/tmp/ansible-tmp-1415958830.45-257441691276283 && echo $HOME/.ansible/tmp/ansible-tmp-1415958830.45-257441691276283'"]
+fatal: [178.62.177.195] => SSH encountered an unknown error. The output was:
+OpenSSH_6.6.1, OpenSSL 1.0.1f 6 Jan 2014
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 19: Applying options for *
+debug1: auto-mux: Trying existing master
+debug1: Control socket "/home/photoplanet/.ansible/cp/ansible-ssh-178.62.177.195-22-root" does not exist
+debug2: ssh_connect: needpriv 0
+debug1: Connecting to 178.62.177.195 [178.62.177.195] port 22.
+debug2: fd 3 setting O_NONBLOCK
+debug1: connect to address 178.62.177.195 port 22: Connection timed out
+ssh: connect to host 178.62.177.195 port 22: Connection timed out
+
+
+TASK: [base | Ensure OpenSSl and libssl are the latest versions] ************** 
+FATAL: no hosts matched or all hosts have already failed -- aborting
+
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/home/photoplanet/vagrant.retry
+
+178.62.177.195             : ok=0    changed=0    unreachable=1    failed=0   
+

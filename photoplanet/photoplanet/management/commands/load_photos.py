@@ -2,8 +2,9 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils.timezone import utc
-
+from django.utils.encoding import force_text
 from instagram.client import InstagramAPI
+import re
 
 from photoplanet.models import Photo
 
@@ -32,6 +33,9 @@ class Command(BaseCommand):
                 p.username = m.user.username
                 p.user_avatar_url = m.user.profile_picture
                 p.photo_url = m.images['standard_resolution'].url
+#                p.caption = m.caption
+                tmp = force_text(m.caption, encoding='utf-8')
+                p.caption =  re.sub(r'([^\s])#', r'\1 #', tmp)
                 p.created_time = m.created_time.replace(tzinfo=utc)
                 p.like_count = m.like_count
                 p.save()
@@ -43,8 +47,9 @@ class Command(BaseCommand):
                 avatar_url=m.user.profile_picture,
                 photo_url=m.images['standard_resolution'].url
             )
-            info += '{created_time}\n{like_count}\n{is_created}\n{is_like_count_updated}\n'.format(
-                created_time=m.created_time,
+            info += '\n{caption}\n{created_time}\n{like_count}\n{is_created}\n{is_like_count_updated}\n'.format(
+                caption="caption",
+		created_time=m.created_time,
                 like_count=m.like_count,
                 is_created=is_created,
                 is_like_count_updated=is_like_count_updated

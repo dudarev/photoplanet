@@ -36,6 +36,9 @@
             <div class="time"><a href="{% url 'photo-detail' photo.id %}"> 
                 {{ photo.created_time }}
               </a>
+            <br>
+	    {{ photo.caption}}
+            <br>  
             likes: {{ photo.like_count }}
             <!-- TODO: remove: vote_prediction: {{ photo.vote_prediction }} -->
             </div>

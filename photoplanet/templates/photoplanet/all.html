@@ -25,6 +25,8 @@
                 {{ photo.created_time }}
               </a>
             likes: {{ photo.like_count }}
+            <br />
+            {{ photo.caption }}
             </div>
             {% include "photoplanet/voting.html" %}
           </div>
