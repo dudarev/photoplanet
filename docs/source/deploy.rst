@@ -129,7 +129,7 @@ Sync and migrate the database::
 And restart uwsgi::
 
     killall -9 uwsgi
-    uwsgi --ini /etc/uwsgi/apps-enabled/django.ini
+    sudo uwsgi --ini /etc/uwsgi/apps-enabled/django.ini
 
 
 .. _DigitalOcean: https://www.digitalocean.com/
