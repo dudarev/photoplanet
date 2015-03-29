@@ -39,11 +39,17 @@ class Photo(models.Model):
             self.save()
 
     def __unicode__(self):
-        return "by {} on {} vote: {}".format(
-            self.username,
-            datetime.strftime(self.created_time, '%Y-%m-%d'),
-            self.vote_count
-        )
+        if self.created_time:
+            return "by {} on {} vote: {}".format(
+                self.username,
+                datetime.strftime(self.created_time, '%Y-%m-%d'),
+                self.vote_count
+            )
+        else:
+            return "by {} vote: {}".format(
+                self.username,
+                self.vote_count
+            )
 
 
 class Vote(models.Model):

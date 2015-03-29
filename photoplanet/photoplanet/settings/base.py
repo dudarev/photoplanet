@@ -4,6 +4,13 @@
 from app import *
 from secret import DB_NAME, DB_PASSWORD, DB_USER, SECRET_KEY
 
+try:
+    from dbbackup import (
+        DBBACKUP_STORAGE, DBBACKUP_S3_BUCKET,
+        DBBACKUP_S3_ACCESS_KEY, DBBACKUP_S3_SECRET_KEY)
+except:
+    pass
+
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
 
@@ -36,9 +43,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-#        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': DB_NAME, # Or path to database file if using sqlite3.
-#        'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
+        # 'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': DB_USER,
         'PASSWORD': DB_PASSWORD,
@@ -166,6 +173,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'south',
     'tastypie',
+    'dbbackup',
     'photoplanet',
     'feedback',
     'social_auth',
