@@ -9,6 +9,7 @@ dev/env_vars/dev.yml
 dev/hosts
 mockups/.sass-cache
 photoplanet/photoplanet/settings/instagram.py
+photoplanet/photoplanet/settings/dbbackup.py
 photoplanet/photoplanet/settings/secret.py
 photoplanet/photoplanet.db
 utils/*.jpg
