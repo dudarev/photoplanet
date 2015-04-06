@@ -1,0 +1,16 @@
+---
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart uwsgi
+  command: killall -9 uwsgi || /sbin/uwsgi --ini /etc/uwsgi/apps-enabled/django.ini 
+# service: name=uwsgi state=restart
+#  key=ini
+
+- name: reload uwsgi
+  service: name=uwsgi state=reloaded
+#  key=ini

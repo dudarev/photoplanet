@@ -1,0 +1,16 @@
+---
+
+- name: Ensure that the application file permissions are set properly
+  file: path={{ project_path }}
+        recurse=yes
+        owner={{ www_user }}
+        group={{ www_group }}
+        state=directory
+#  notify: restart application
+
+- name: Make
+  file: path={{ virtualenv_path }}
+        owner={{ www_user }}
+        group={{ www_group }}
+        mode=0755 state=directory
+

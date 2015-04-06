@@ -1,6 +1,16 @@
 *.pyc
+dev/.vagrant/machines/default/virtualbox/action_provision
+dev/.vagrant/machines/default/virtualbox/action_set_name
+dev/.vagrant/machines/default/virtualbox/id
+dev/.vagrant/machines/default/virtualbox/index_uuid
+dev/.vagrant/machines/default/virtualbox/synced_folders
+dev/.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory
+dev/env_vars/dev.yml
+dev/hosts
 mockups/.sass-cache
 photoplanet/photoplanet/settings/instagram.py
+photoplanet/photoplanet/settings/dbbackup.py
+photoplanet/photoplanet/settings/secret.py
 photoplanet/photoplanet.db
 utils/*.jpg
 utils/config.py
@@ -8,3 +18,5 @@ docs/build
 htmlcov
 .coverage
 tags
+.idea
+.DS_Store

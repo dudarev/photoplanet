@@ -1,0 +1,32 @@
+home_dir: "/home/{{ www_user }}"
+virtualenv_path: "{{ home_dir }}/venv"
+project_path: "{{ home_dir }}/{{ project_name }}"
+application_path: "{{ project_path }}/{{ application_name }}"
+application_log_dir: "{{ project_path }}/logs"
+application_log_file: "{{ application_log_dir }}/{{ application_name }}.log"
+requirements_file: "{{ project_path }}/requirements/local.txt"
+
+
+# Nginx settings
+nginx_http_port: 80
+nginx_https_port: 443
+nginx_access_log_file: "{{ application_log_dir }}/nginx_access.log"
+nginx_error_log_file: "{{ application_log_dir }}/nginx_error.log"
+nginx_static_dir: "{{ virtualenv_path }}/static/"
+nginx_media_dir: "{{ virtualenv_path }}/media/"
+
+# www user and group
+www_user: "{{ application_name }}"
+#www_group: "{{ application_name }}"
+www_user: photoplanet 
+#www_user: www-data 
+#www_group: www-data 
+www_group: photoplanet
+
+
+
+#uwsgi settings
+#uwsgi_conf: "{{ project_path }}/dev/"
+uwsgi_conf: "/etc/uwsgi/"
+
+cron_dir: "/var/spool/crontabs" 

@@ -1,0 +1,16 @@
+---
+- include: create_user_group.yml
+
+- include: setup_virtualenv.yml
+
+- include: setup_git_repo.yml
+
+- include: setup_django_app.yml
+
+- include: set_perm.yml
+
+#- include: setup_django_man.yml
+
+- include: setup_nginx.yml
+
+- include: setup_uwsgi.yml

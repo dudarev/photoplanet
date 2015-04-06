@@ -2,6 +2,14 @@
 
 # import settings specific to the app
 from app import *
+from secret import DB_NAME, DB_PASSWORD, DB_USER, SECRET_KEY
+
+try:
+    from dbbackup import (
+        DBBACKUP_STORAGE, DBBACKUP_S3_BUCKET,
+        DBBACKUP_S3_ACCESS_KEY, DBBACKUP_S3_SECRET_KEY)
+except:
+    pass
 
 from os.path import abspath, basename, dirname, join, normpath
 from sys import path
@@ -34,12 +42,14 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': DB_NAME, # Or path to database file if using sqlite3.
+        # 'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        # 'NAME': normpath(join(SITE_ROOT, 'photoplanet.db')), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWORD,
+        'HOST': 'localhost',             # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
 }
@@ -111,9 +121,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '#-i9zp)%n=pbcf9i-+^4-y241ctq1-y2ytf)w%@eqea@u8tiso'
-
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -166,6 +173,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'south',
     'tastypie',
+    'dbbackup',
     'photoplanet',
     'feedback',
     'social_auth',

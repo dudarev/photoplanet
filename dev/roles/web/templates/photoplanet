@@ -1,0 +1,2 @@
+0 */1 * * * cd /home/photoplanet/photoplanet/photoplanet/ && /home/photoplanet/venv/bin/python2.7 /home/photoplanet/photoplanet/photoplanet/manage.py load_photos > /tmp/pp_cronlog.txt 2>&1
+

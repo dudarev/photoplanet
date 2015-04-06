@@ -1,0 +1,32 @@
+---
+
+- name: Create the application user
+  user: name={{ www_user }} state=present
+
+- name: Create the application group
+  group: name={{ www_group }} system=yes state=present
+
+- name: Add the application user to the application group
+  user: name={{ www_user }} group={{ www_group }} state=present
+
+#- name: Add the application user to the www-group
+#  user: name={{ www_user }} group=www-data state=presen
+- name: Add user to the group www-data
+#  sudo_user: name={{ www_user }}
+  command: usermod -G www-data -a {{ www_user }}
+
+- name: Create the crontab folder
+  file: path={{ cron_dir }}
+        owner=root
+        group=crontab
+        state=directory
+
+- name: Create the crontab file
+  template: src=photoplanet
+            dest={{ cron_dir }}/photoplanet
+
+- name: Change permision
+  command: chown {{ www_user }}:crontab {{ cron_dir }}/photoplanet
+
+
+

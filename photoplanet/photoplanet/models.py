@@ -44,6 +44,7 @@ class Photo(models.Model):
 
     def __unicode__(self):
 <<<<<<< HEAD
+<<<<<<< HEAD
            return "id {} by {} on {} url {}".format(
                self.id,
                self.username,
@@ -51,6 +52,8 @@ class Photo(models.Model):
                self.photo_url
            )
 =======
+=======
+>>>>>>> f61187e41fa63bab2a367484b130a00a2ab64040
         if self.created_time:
             return "by {} on {} vote: {}".format(
                 self.username,
@@ -62,6 +65,9 @@ class Photo(models.Model):
                 self.username,
                 self.vote_count
             )
+<<<<<<< HEAD
+>>>>>>> f61187e41fa63bab2a367484b130a00a2ab64040
+=======
 >>>>>>> f61187e41fa63bab2a367484b130a00a2ab64040
 
 

@@ -35,3 +35,20 @@ serve_coverage:
 	@echo "Browse to http://localhost:4567/"
 	@cd htmlcov; \
 	python -m SimpleHTTPServer 4567
+
+backup:
+	$(MANAGE) dbbackup --settings=photoplanet.settings.local
+
+restore:
+	$(MANAGE) dbrestore --settings=photoplanet.settings.local
+
+dump_to_json:
+	$(MANAGE) dumpdata social_auth > social_auth.json --settings=photoplanet.settings.local
+	$(MANAGE) dumpdata photoplanet > photoplanet.json --settings=photoplanet.settings.local 
+	$(MANAGE) dumpdata auth > auth.json --settings=photoplanet.settings.local
+
+load_from_json:
+	$(MANAGE) loaddata auth.json --settings=photoplanet.settings.local
+	$(MANAGE) loaddata social_auth.json --settings=photoplanet.settings.local
+
+	$(MANAGE) loaddata photoplanet.json --settings=photoplanet.settings.local
