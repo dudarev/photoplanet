@@ -1,6 +1,7 @@
 # https://docs.djangoproject.com/en/1.5/topics/http/views/
+import re
 from instagram.client import InstagramAPI
-
+from datetime import datetime
 from django.conf import settings
 from django.http import HttpResponse, Http404
 from django.views.decorators import csrf
@@ -8,6 +9,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import BaseUpdateView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 from django.utils import decorators
+from django.utils.encoding import force_text
 
 from braces.views import JSONResponseMixin, LoginRequiredMixin
 
@@ -51,7 +53,8 @@ class UserPhotosListView(EnsureCsrfCookieMixin, ListView):
 
 class AllPhotosListView(EnsureCsrfCookieMixin, ListView):
     model = Photo
-    queryset = Photo.objects.order_by('-created_time').all()
+    queryset = Photo.objects.filter(created_time__gte=datetime(2010,1,1)).order_by('-created_time').all()
+    #queryset = Photo.objects.order_by('-created_time').all()
     template_name = 'photoplanet/all.html'  # default is app_name/model_list.html
     context_object_name = 'photos'  # default is object_list
     paginate_by = settings.PHOTOS_PER_PAGE
@@ -124,7 +127,7 @@ def load_photos(request):
     """
     Loads photos from Instagram and populates database.
     """
-
+    hd = open("/tmp/load_photo.txt", 'a') 
     api = InstagramAPI(
         client_id=settings.INSTAGRAM_CLIENT_ID,
         client_secret=settings.INSTAGRAM_CLIENT_SECRET)
@@ -140,11 +143,15 @@ def load_photos(request):
             p.username = m.user.username
             p.user_avatar_url = m.user.profile_picture
             p.photo_url = m.images['standard_resolution'].url
-            p.created_time = m.created_time
+            tmp = force_text(m.caption, encoding='utf-8')
+            p.caption =  re.sub(r'([^\s])#', r'\1 #', tmp)
+            #if len(p.caption) > 1:
+            #    p.caption = re.sub(r'([^\s])#', r'\1 #', p.caption) 
+	    p.created_time = m.created_time
             p.like_count = m.like_count
             p.save()
             is_like_count_updated = True
-        info += '<li>{} {} {} {} {} {} {} {}</li>'.format(
+        info += '<li>{} {} {} {} {} {} {} {} {}</li>'.format(
             m.id,
             m.user.username,
             _img_tag(m.user.profile_picture),
@@ -152,8 +159,14 @@ def load_photos(request):
             m.created_time,
             m.like_count,
             is_created,
-            is_like_count_updated
+            is_like_count_updated,
+            m.caption 
         )
+#        strM = force_text(m.caption, encoding='utf-8')
+#        strP = force_text(p.caption, encoding='utf-8')
+#        mm = u"m=" + strM + "\n" + u"p=" + strP
+#	hd.write(mm)
+       
 
     html = "<html><body><ul>{}</ul></body></html>".format(info)
     return HttpResponse(html)

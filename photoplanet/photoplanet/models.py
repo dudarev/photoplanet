@@ -3,6 +3,8 @@ from datetime import datetime
 from django.db import models
 from django.db.models import Avg
 from django.contrib.auth.models import User
+from django.utils.encoding import force_text
+
 
 
 class Photo(models.Model):
@@ -14,10 +16,12 @@ class Photo(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     username = models.CharField(max_length=100)
     user_avatar_url = models.URLField(null=True)
+    caption = models.TextField(null=True)
     photo_url = models.URLField(null=True)
     created_time = models.DateTimeField(null=True)
     like_count = models.IntegerField(null=True)
     vote_count = models.IntegerField(null=False, default=0)
+    
     # formula used for estimation:
     # likes * votes_avg / likes_avg
     # it is float to have better precision
@@ -39,11 +43,26 @@ class Photo(models.Model):
             self.save()
 
     def __unicode__(self):
-        return "by {} on {} vote: {}".format(
-            self.username,
-            datetime.strftime(self.created_time, '%Y-%m-%d'),
-            self.vote_count
-        )
+<<<<<<< HEAD
+           return "id {} by {} on {} url {}".format(
+               self.id,
+               self.username,
+               datetime.strftime(self.created_time, '%Y-%m-%d %H-%M'),  
+               self.photo_url
+           )
+=======
+        if self.created_time:
+            return "by {} on {} vote: {}".format(
+                self.username,
+                datetime.strftime(self.created_time, '%Y-%m-%d'),
+                self.vote_count
+            )
+        else:
+            return "by {} vote: {}".format(
+                self.username,
+                self.vote_count
+            )
+>>>>>>> f61187e41fa63bab2a367484b130a00a2ab64040
 
 
 class Vote(models.Model):
