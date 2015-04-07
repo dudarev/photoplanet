@@ -14,6 +14,7 @@
     - build-essential
     - git
     - python-dev
+    - libpq-dev
     - python-pip
     - python-pycurl
     - uwsgi

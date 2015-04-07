@@ -121,7 +121,7 @@ Similarly, copy file ``instagram.sample.py`` to ``instagram.py`` and set variabl
 Sync and migrate the database::
 	
     cd /home/photoplanet/venv
-    sourse bin/activate
+    source bin/activate
     cd ../photoplanet/photoplanet
     ./manage.py syncdb --settings=photoplanet.settings.web
     ./manage.py migrate --settings=photoplanet.settings.web

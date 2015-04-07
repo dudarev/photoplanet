@@ -5,6 +5,18 @@
 
 - include: setup_git_repo.yml
 
+- name: Create instagram.py file
+  template: src=instagram.py
+            dest={{ application_path }}/photoplanet/settings/instagram.py
+            backup=yes
+            mode=644
+
+- name: Create secret.py file
+  template: src=secret.py
+            dest={{ application_path }}/photoplanet/settings/secret.py
+            backup=yes
+            mode=644
+
 - include: setup_django_app.yml
 
 - include: set_perm.yml

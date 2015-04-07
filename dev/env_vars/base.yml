@@ -3,6 +3,7 @@
 git_repo: https://github.com/dudarev/photoplanet.git
 project_name: photoplanet
 application_name: photoplanet
+application_settings: photoplanet.settings.web
 
 ssl_dest_dir: /etc/ssl
 
